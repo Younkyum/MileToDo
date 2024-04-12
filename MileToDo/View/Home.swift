@@ -12,38 +12,45 @@ struct Home: View {
     @State private var weekSlider: [[Date.WeekDay]] = []
     @State private var currentWeekIndex: Int = 1
     @State private var createWeek: Bool = false
-    @State private var projectCount: Int = 3
+    @State private var projectCount: Int = 5
+    @State var isProjectAppendSheetAppear: Bool = false
     
     var body: some View {
-        VStack(spacing: 0, content: {
-            WeekSlider()
-            
-            List{
-                Text("hello")
-            }
-            
-        })
-        //.vSpacing(.top)
-        .onAppear(perform: {
-            if weekSlider.isEmpty {
-                let currentWeek = Date().fetchWeek()
-                                
-                if let firstDate = currentWeek.first?.date {
-                    weekSlider.append(firstDate.createPrieviousWeek())
+        ZStack {
+            VStack(spacing: 0, content: {
+                WeekSlider()
+                
+                List{
+                    Text("hello")
                 }
                 
-                weekSlider.append(currentWeek)
+            })
+            .onAppear(perform: {
+                if weekSlider.isEmpty {
+                    let currentWeek = Date().fetchWeek()
+                                    
+                    if let firstDate = currentWeek.first?.date {
+                        weekSlider.append(firstDate.createPrieviousWeek())
+                    }
+                    
+                    weekSlider.append(currentWeek)
 
-                if let lastDate = currentWeek.last?.date {
-                    weekSlider.append(lastDate.createNextWeek())
+                    if let lastDate = currentWeek.last?.date {
+                        weekSlider.append(lastDate.createNextWeek())
+                    }
+                }
+            })
+            .onChange(of: currentWeekIndex, initial: false) { oldValue, newValue in
+                if newValue == 0 || newValue == (weekSlider.count - 1) {
+                    createWeek = true
                 }
             }
-        })
-        .onChange(of: currentWeekIndex, initial: false) { oldValue, newValue in
-            if newValue == 0 || newValue == (weekSlider.count - 1) {
-                createWeek = true
-            }
+            
+            ProjectAppendButton(isProjectAppendSheetAppear: $isProjectAppendSheetAppear)
         }
+        .sheet(isPresented: $isProjectAppendSheetAppear, content: {
+            ProjectAppend(isProjectAppendSheetAppear: $isProjectAppendSheetAppear)
+        })
     }
 }
 
@@ -75,7 +82,7 @@ extension Home {
                     }
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
-                .frame(height: CGFloat(100 + 24 * projectCount))
+                .frame(height: CGFloat(100 + 30 * projectCount))
             })
             
         }
@@ -171,6 +178,11 @@ extension Home {
                 .padding(.top, 10)
             MileStoneComponent(color: .green, direction: .line)
                 .padding(.top, 10)
+            MileStoneComponent(color: .green, direction: .line)
+                .padding(.top, 10)
+            MileStoneComponent(color: .green, direction: .line)
+                .padding(.top, 10)
+
         }
     }
 }

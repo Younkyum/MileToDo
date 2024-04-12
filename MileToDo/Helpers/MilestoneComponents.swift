@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum MileStoneCase {
-    case none, left, right, full, line
+    case none, left, right, full, line, only
 }
 
 
@@ -34,6 +34,14 @@ struct MileStoneComponent: View {
     @ViewBuilder
     func CircleView() -> some View {
         switch direction {
+        case .only:
+            Circle()
+                .fill(color)
+                .frame(width: 14, height: 14)
+            
+            Circle()
+                .fill(.white)
+                .frame(width: 6, height: 6)
         case .none, .line:
             Rectangle()
                 .fill(Color.clear)
@@ -58,7 +66,7 @@ struct MileStoneComponent: View {
     func LineView() -> some View {
         HStack{
             switch direction {
-            case .none:
+            case .none, .only:
                 Rectangle()
                     .fill(.white)
                     .frame(width: .infinity, height: 4)
