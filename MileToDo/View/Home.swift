@@ -61,7 +61,7 @@ struct Home: View {
 }
 
 
-/// Vertical Calendar
+/// Vertical Calendar - WeekSlider
 extension Home {
     @ViewBuilder
     func WeekSlider() -> some View {

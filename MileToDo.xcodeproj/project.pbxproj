@@ -122,7 +122,6 @@
 				C6EC85DC2BC76F2600C9A4D2 /* View+Extensions.swift */,
 				C6EC85DF2BC771F800C9A4D2 /* Date+Extension.swift */,
 				C6EC85E12BC77BB100C9A4D2 /* OffsetKey.swift */,
-				C6EC85E32BC7891900C9A4D2 /* MilestoneComponents.swift */,
 				C6EC85F02BC8D6EB00C9A4D2 /* Color+Extension.swift */,
 			);
 			path = Helpers;
@@ -134,6 +133,7 @@
 				C6EC85EA2BC8C8E800C9A4D2 /* ProjectAppendButton.swift */,
 				C6EC85EE2BC8D30200C9A4D2 /* ProjectTitle.swift */,
 				C6EC85F42BC8DE8900C9A4D2 /* ProjectTodo.swift */,
+				C6EC85E32BC7891900C9A4D2 /* MilestoneComponents.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
