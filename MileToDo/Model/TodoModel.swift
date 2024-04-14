@@ -10,14 +10,17 @@ import SwiftUI
 
 @Model
 class TodoModel {
-    let id: UUID = UUID()
+    @Attribute(.unique) var id: UUID = UUID()
     var todoName: String
     var isFinished: Bool = false
+    var isKilled: Bool = false
     var deadLineDate: Date
     
-    init(todoName: String, isFinished: Bool, deadLineDate: Date) {
+    @Relationship var project: ProjectModel
+    
+    init(todoName: String, deadLineDate: Date, project: ProjectModel) {
         self.todoName = todoName
-        self.isFinished = isFinished
         self.deadLineDate = deadLineDate
+        self.project = project
     }
 }

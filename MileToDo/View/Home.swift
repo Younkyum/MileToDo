@@ -6,23 +6,25 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct Home: View {
+    @Environment(\.modelContext) var context
+    
     @State private var currentDate: Date = .init()
     @State private var weekSlider: [[Date.WeekDay]] = []
     @State private var currentWeekIndex: Int = 1
     @State private var createWeek: Bool = false
-    @State private var projectCount: Int = 5
     @State var isProjectAppendSheetAppear: Bool = false
+    
+    @Query(sort: \ProjectModel.createdAt) var projectList: [ProjectModel]
     
     var body: some View {
         ZStack {
             VStack(spacing: 0, content: {
                 WeekSlider()
                 
-                List{
-                    Text("hello")
-                }
+                TodoLisView()
                 
             })
             .onAppear(perform: {
@@ -82,7 +84,7 @@ extension Home {
                     }
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
-                .frame(height: CGFloat(100 + 30 * projectCount))
+                .frame(height: CGFloat(100 + 30 * projectList.count))
             })
             
         }
@@ -172,17 +174,29 @@ extension Home {
     @ViewBuilder
     func MileStoneView(_ day: Date.WeekDay) -> some View {
         VStack {
-            MileStoneComponent(color: .green, direction: .full)
-                .padding(.top, 10)
-            MileStoneComponent(color: .green, direction: .line)
-                .padding(.top, 10)
-            MileStoneComponent(color: .green, direction: .line)
-                .padding(.top, 10)
-            MileStoneComponent(color: .green, direction: .line)
-                .padding(.top, 10)
-            MileStoneComponent(color: .green, direction: .line)
-                .padding(.top, 10)
-
+            ForEach(projectList, id: \.id) { pd in
+                MileStoneComponent(color: Color(hex: pd.projectColor),direction: .line)
+                    .padding(.top, 10)
+            }
         }
+    }
+}
+
+
+/// TodoList View
+extension Home {
+    @ViewBuilder
+    func TodoLisView() -> some View {
+        List{
+            ForEach(projectList, id: \.id) { project in
+                ProjectTitle(projectData: project)
+                ForEach(project.todoLists, id: \.id) { todo in
+                    if !todo.isKilled && !todo.isFinished {
+                        ProjectTodo(todoData: todo)
+                    }
+                }
+            }
+        }
+        .listStyle(.plain)
     }
 }

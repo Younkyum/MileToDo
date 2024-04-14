@@ -13,7 +13,8 @@ struct ProjectAppend: View {
     
     @State var projectNameText = ""
     @State var projectStartDate = Date()
-    @State var projectMainColorList = ["파란색", "빨간색", "노란색"]
+    @State var projectMainColorList = ["파란색", "빨간색", "노란색", "초록색"]
+    @State var projectMainColorRawList = ["007AFF", "FF2D55", "FF9500", "5FDE92"]
     @State var projectMainColor = "파란색"
     
     
@@ -98,7 +99,11 @@ extension ProjectAppend {
 /// Save to SwiftData
 extension ProjectAppend {
     private func saveProject() {
-        let newProject = ProjectModel(projectName: projectNameText, isDone: false, createdAt: Date(), currentEndDate: Date())
+        let newProject = ProjectModel(projectName: projectNameText,
+                                      projectColor: projectMainColorRawList[projectMainColorList.firstIndex(of: projectMainColor)!],
+                                      createdAt: projectStartDate,
+                                      currentEndDate: projectStartDate, 
+                                      todoLists: [])
         context.insert(newProject)
         
         let _: ()? = try? context.save()

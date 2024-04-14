@@ -10,16 +10,20 @@ import SwiftUI
 
 @Model
 class ProjectModel {
-    let id: UUID = UUID()
+    @Attribute(.unique) let id: UUID = UUID()
     var projectName: String
     var isDone: Bool = false
+    var projectColor: String
     var createdAt: Date
     var currentEndDate: Date
     
-    init(projectName: String, isDone: Bool, createdAt: Date, currentEndDate: Date) {
+    @Relationship var todoLists: [TodoModel]
+    
+    init(projectName: String, projectColor: String, createdAt: Date, currentEndDate: Date, todoLists: [TodoModel]) {
         self.projectName = projectName
-        self.isDone = isDone
+        self.projectColor = projectColor
         self.createdAt = createdAt
         self.currentEndDate = currentEndDate
+        self.todoLists = todoLists
     }
 }
