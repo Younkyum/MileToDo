@@ -27,6 +27,7 @@ struct MileStoneComponent: View {
             .frame(height: 14)
             .padding(.horizontal, -4)
         }
+        .padding(.top, 6)
     }
     
     
@@ -40,7 +41,7 @@ struct MileStoneComponent: View {
                 .frame(width: 14, height: 14)
             
             Circle()
-                .fill(.white)
+                .fill(.backgroundWhite)
                 .frame(width: 6, height: 6)
         case .none, .line:
             Rectangle()
@@ -52,7 +53,7 @@ struct MileStoneComponent: View {
                 .frame(width: 14, height: 14)
             
             Circle()
-                .fill(.white)
+                .fill(.backgroundWhite)
                 .frame(width: 6, height: 6)
         }
     }
@@ -68,21 +69,21 @@ struct MileStoneComponent: View {
             switch direction {
             case .none, .only:
                 Rectangle()
-                    .fill(.white)
+                    .fill(.backgroundWhite)
                     .frame(maxWidth: .infinity, maxHeight: 4)
                 Rectangle()
-                    .fill(.white)
+                    .fill(.backgroundWhite)
                     .frame(maxWidth: .infinity, maxHeight: 4)
             case .left:
                 Rectangle()
                     .fill(color)
                     .frame(maxWidth: .infinity, maxHeight: 4)
                 Rectangle()
-                    .fill(.white)
+                    .fill(.backgroundWhite)
                     .frame(maxWidth: .infinity, maxHeight: 4)
             case .right:
                 Rectangle()
-                    .fill(.white)
+                    .fill(.backgroundWhite)
                     .frame(maxWidth: .infinity, maxHeight: 4)
                 Rectangle()
                     .fill(color)

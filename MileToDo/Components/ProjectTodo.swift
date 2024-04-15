@@ -75,7 +75,7 @@ extension ProjectTodo {
         VStack(alignment: .leading){
             Text(todoData.todoName)
                 .font(.system(size: 18, weight: .regular))
-                .foregroundStyle(.black)
+                .foregroundStyle(.textBlack)
             
             
             Text("\(todoData.deadLineDate.format("~ YYYY.M.dd"))")
@@ -119,12 +119,8 @@ extension ProjectTodo {
             Button("Todo 삭제하기", role: .destructive) {
                 todoData.isKilled = true
                 //context.delete(todoData)
-                
-                if todoData.deadLineDate.format("YYYYMMdd") == todoData.project.currentEndDate.format("YYYYMMdd") {
-                    var project = todoData.project
-                    
-                    // CHANGE EndDate of Project
-                }
+                todoData.project.dateLists.remove(at: todoData.project.dateLists.firstIndex(of: todoData.deadLineDate.format("YYYYMMdd"))!)
+                todoData.project.dateLists.sort()
             }
         }
     }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProjectAppend: View {
     @Environment(\.modelContext) var context
@@ -21,7 +22,7 @@ struct ProjectAppend: View {
     @Binding var isProjectAppendSheetAppear: Bool
     @State var isChanged = false
     @State var isSaveAlertAppear = false
-    
+        
     
     var body: some View {
         NavigationStack {
@@ -99,10 +100,12 @@ extension ProjectAppend {
 /// Save to SwiftData
 extension ProjectAppend {
     private func saveProject() {
+        var dateLists: [String] = []
+        dateLists = [projectStartDate.format("YYYYMMdd")]
+        
         let newProject = ProjectModel(projectName: projectNameText,
                                       projectColor: projectMainColorRawList[projectMainColorList.firstIndex(of: projectMainColor)!],
-                                      createdAt: projectStartDate,
-                                      currentEndDate: projectStartDate, 
+                                      dateLists: dateLists,
                                       todoLists: [])
         context.insert(newProject)
         

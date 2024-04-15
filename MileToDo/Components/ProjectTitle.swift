@@ -8,12 +8,7 @@
 import SwiftUI
 
 struct ProjectTitle: View {
-    @Bindable var projectData: ProjectModel = ProjectModel(projectName: "Apple Developer Acadmey", 
-                                                        projectColor: "007AFF",
-                                                        createdAt: Date(),
-                                                        currentEndDate: Date(), 
-                                                        todoLists: [])
-    
+    @Bindable var projectData: ProjectModel    
     @State var isTodoAppendAppear = false
     
     var body: some View {

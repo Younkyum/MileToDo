@@ -11,6 +11,15 @@ extension Date {
     func format(_ format: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
+        formatter.locale = Locale(identifier: "ko-KR")
+        
+        return formatter.string(from: self)
+    }
+    
+    func lunarFormat() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M월 d일"
+        formatter.calendar = Calendar(identifier: .chinese)
         
         return formatter.string(from: self)
     }

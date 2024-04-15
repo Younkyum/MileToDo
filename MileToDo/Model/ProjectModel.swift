@@ -12,18 +12,16 @@ import SwiftUI
 class ProjectModel {
     @Attribute(.unique) let id: UUID = UUID()
     var projectName: String
-    var isDone: Bool = false
     var projectColor: String
-    var createdAt: Date
-    var currentEndDate: Date
+    var isSelected: Bool = true
+    var dateLists: [String] = []
     
-    @Relationship var todoLists: [TodoModel]
+    @Relationship(deleteRule: .cascade) var todoLists: [TodoModel]
     
-    init(projectName: String, projectColor: String, createdAt: Date, currentEndDate: Date, todoLists: [TodoModel]) {
+    init(projectName: String, projectColor: String, dateLists: [String], todoLists: [TodoModel]) {
         self.projectName = projectName
         self.projectColor = projectColor
-        self.createdAt = createdAt
-        self.currentEndDate = currentEndDate
+        self.dateLists = dateLists
         self.todoLists = todoLists
     }
 }

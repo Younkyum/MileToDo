@@ -21,10 +21,10 @@ struct ProjectAppendButton: View {
                 }, label: {
                     Text(buttonTitle)
                         .font(.system(size: 18, weight: .medium))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.backgroundWhite)
                         .padding(.vertical, 13.5)
                         .padding(.horizontal, 13)
-                        .background(.black)
+                        .background(.textBlack)
                         .clipShape(Capsule())
                 })
                 .padding()

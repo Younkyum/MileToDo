@@ -16,8 +16,12 @@ struct Home: View {
     @State private var currentWeekIndex: Int = 1
     @State private var createWeek: Bool = false
     @State var isProjectAppendSheetAppear: Bool = false
+    @State var isProjectDetailSheetAppear: Bool = false
     
-    @Query(sort: \ProjectModel.createdAt) var projectList: [ProjectModel]
+    @Query(filter: #Predicate<ProjectModel> { project in
+        project.isSelected == true
+    })
+    var projectList: [ProjectModel]
     
     var body: some View {
         ZStack {
@@ -30,13 +34,13 @@ struct Home: View {
             .onAppear(perform: {
                 if weekSlider.isEmpty {
                     let currentWeek = Date().fetchWeek()
-                                    
+                    
                     if let firstDate = currentWeek.first?.date {
                         weekSlider.append(firstDate.createPrieviousWeek())
                     }
                     
                     weekSlider.append(currentWeek)
-
+                    
                     if let lastDate = currentWeek.last?.date {
                         weekSlider.append(lastDate.createNextWeek())
                     }
@@ -53,6 +57,9 @@ struct Home: View {
         .sheet(isPresented: $isProjectAppendSheetAppear, content: {
             ProjectAppend(isProjectAppendSheetAppear: $isProjectAppendSheetAppear)
         })
+        .sheet(isPresented: $isProjectDetailSheetAppear, content: {
+            ProjectDetail(isProjectDetailSheetAppear: $isProjectDetailSheetAppear)
+        })
     }
 }
 
@@ -66,17 +73,26 @@ extension Home {
     @ViewBuilder
     func WeekSlider() -> some View {
         VStack {
-            Text(currentDate.format("M월"))
-                .font(.system(size: 34, weight: .bold))
-                .hSpacing(.leading)
-                .padding([.leading])
-                .padding([.bottom], 8)
-            VStack(spacing: 0, content: {
-                Text("\(currentDate.format("YYYY년 M월 d일"))")
-                    .font(.system(size: 17))
+            HStack(alignment: .center) {
+                Text(currentDate.format("M월"))
+                    .font(.system(size: 34, weight: .bold))
                     .hSpacing(.leading)
-                    .padding(.leading)
+                    .padding([.leading])
+                    .padding([.bottom], 8)
+                
+                Button {
+                    isProjectDetailSheetAppear = true
+                } label: {
+                    Image(systemName: "calendar")
+                        .resizable()
+                        .foregroundStyle(.textBlack)
+                        .frame(width: 20, height: 20)
+                        .padding(.horizontal)
+                }
 
+            }
+            
+            VStack(spacing: 0, content: {
                 TabView(selection: $currentWeekIndex) {
                     ForEach(weekSlider.indices, id: \.self) { index in
                         let week = weekSlider[index]
@@ -84,7 +100,8 @@ extension Home {
                     }
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
-                .frame(height: CGFloat(100 + 30 * projectList.count))
+                .frame(height: CGFloat(90 + 30 * projectList.count))
+                
             })
             
         }
@@ -98,28 +115,28 @@ extension Home {
                     Text(day.date.format("E"))
                         .font(.system(size: 13))
                         .fontWeight(.regular)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.textBlack)
                     
                     Text(day.date.format("d"))
                         .font(.system(size: 20))
                         .fontWeight(.regular)
-                        .foregroundStyle(isSameDate(day.date, currentDate) ? .white : .black)
+                        .foregroundStyle(isSameDate(day.date, currentDate) ? .backgroundWhite : .textBlack)
                         .background(content: {
                             if isSameDate(day.date, currentDate) {
                                 Circle()
-                                    .fill(.black)
+                                    .fill(.textBlack)
                                     .frame(width: 35, height: 35)
                             }
                             
                             if day.date.isToday {
                                 Circle()
-                                    .fill(.black)
+                                    .fill(.textBlack)
                                     .frame(width: 5, height: 5)
                                     .vSpacing(.bottom)
                                     .offset(y: 12)
                             }
                         })
-                        .background(.white)
+                        .background(.backgroundWhite)
                         .frame(width: 35, height: 35)
                     
                     MileStoneView(day)
@@ -175,9 +192,24 @@ extension Home {
     @ViewBuilder
     func MileStoneView(_ day: Date.WeekDay) -> some View {
         VStack {
-            ForEach(projectList, id: \.id) { pd in
-                MileStoneComponent(color: Color(hex: pd.projectColor),direction: .line)
-                    .padding(.top, 10)
+            ForEach(projectList, id: \.id) { project in
+                let dayString = day.date.format("YYYYMMdd")
+                let firstProjectDayString = project.dateLists.first!
+                let lastProjectDayString = project.dateLists.last!
+                
+                if lastProjectDayString < dayString || firstProjectDayString > dayString {
+                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .none)
+                } else if firstProjectDayString == lastProjectDayString && dayString == firstProjectDayString  {
+                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .only)
+                } else if firstProjectDayString == dayString {
+                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .right)
+                } else if lastProjectDayString == dayString {
+                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .left)
+                } else if project.dateLists.contains(dayString) {
+                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .full)
+                } else {
+                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .line)
+                }
             }
         }
     }
@@ -189,12 +221,36 @@ extension Home {
     @ViewBuilder
     func TodoListView() -> some View {
         List{
+            
+            HStack {
+                Text("\(currentDate.format("YYYY년 M월 d일 (E)"))")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(.textBlack)
+                    .hSpacing(.leading)
+                
+                Text("\(currentDate.lunarFormat())")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(.gray)
+                    .hSpacing(.leading)
+                
+                Spacer()
+            }
+            
+            
+            
             ForEach(projectList, id: \.id) { project in
                 ProjectTitle(projectData: project)
                 ProjectTodoListView(project)
             }
+            
+            Rectangle()
+                .fill(.backgroundWhite)
+                .listRowSeparator(.hidden)
+                .frame(height: 80)
+            
         }
         .listStyle(.plain)
+        .scrollIndicators(.never)
     }
     
     @ViewBuilder
@@ -210,3 +266,5 @@ extension Home {
         }
     }
 }
+
+

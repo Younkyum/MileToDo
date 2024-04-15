@@ -64,18 +64,13 @@ struct TodoAppend: View {
 
 
 extension TodoAppend {
-    func saveTodo() {        
+    func saveTodo() {
         let newTodo = TodoModel(todoName: todoTitle,
                                 deadLineDate: deadLineDate,
                                 project: selectedProject)
         
-        print(selectedProject.currentEndDate)
-        
-        if (selectedProject.currentEndDate.format("YYYYMMdd") < deadLineDate.format("YYYYMMdd")) {
-            selectedProject.currentEndDate = deadLineDate
-        }
-        
-        print(selectedProject.currentEndDate)
+        selectedProject.dateLists.append(deadLineDate.format("YYYYMMdd"))
+        selectedProject.dateLists.sort()
         
         context.insert(newTodo)
         selectedProject.todoLists.append(newTodo)

@@ -24,6 +24,8 @@
 		C6EC85F12BC8D6EB00C9A4D2 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC85F02BC8D6EB00C9A4D2 /* Color+Extension.swift */; };
 		C6EC85F32BC8DA6500C9A4D2 /* TodoAppend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC85F22BC8DA6500C9A4D2 /* TodoAppend.swift */; };
 		C6EC85F52BC8DE8900C9A4D2 /* ProjectTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC85F42BC8DE8900C9A4D2 /* ProjectTodo.swift */; };
+		C6EC85F92BCCD88D00C9A4D2 /* ProjectDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC85F82BCCD88D00C9A4D2 /* ProjectDetail.swift */; };
+		C6EC85FD2BCD1CF800C9A4D2 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6EC85FC2BCD1CF800C9A4D2 /* Color.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		C6EC85F02BC8D6EB00C9A4D2 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		C6EC85F22BC8DA6500C9A4D2 /* TodoAppend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAppend.swift; sourceTree = "<group>"; };
 		C6EC85F42BC8DE8900C9A4D2 /* ProjectTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTodo.swift; sourceTree = "<group>"; };
+		C6EC85F82BCCD88D00C9A4D2 /* ProjectDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetail.swift; sourceTree = "<group>"; };
+		C6EC85FC2BCD1CF800C9A4D2 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 				C6EC85C82BC76CA700C9A4D2 /* MileToDoApp.swift */,
 				C6EC85CA2BC76CA700C9A4D2 /* ContentView.swift */,
 				C6EC85CC2BC76CA800C9A4D2 /* Assets.xcassets */,
+				C6EC85FC2BCD1CF800C9A4D2 /* Color.xcassets */,
 				C6EC85CE2BC76CA800C9A4D2 /* Preview Content */,
 			);
 			path = MileToDo;
@@ -112,6 +117,7 @@
 				C6EC85D82BC76CCC00C9A4D2 /* Home.swift */,
 				C6EC85EC2BC8CAEC00C9A4D2 /* ProjectAppend.swift */,
 				C6EC85F22BC8DA6500C9A4D2 /* TodoAppend.swift */,
+				C6EC85F82BCCD88D00C9A4D2 /* ProjectDetail.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +204,7 @@
 			files = (
 				C6EC85D02BC76CA800C9A4D2 /* Preview Assets.xcassets in Resources */,
 				C6EC85CD2BC76CA800C9A4D2 /* Assets.xcassets in Resources */,
+				C6EC85FD2BCD1CF800C9A4D2 /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +223,7 @@
 				C6EC85CB2BC76CA700C9A4D2 /* ContentView.swift in Sources */,
 				C6EC85D92BC76CCC00C9A4D2 /* Home.swift in Sources */,
 				C6EC85E42BC7891900C9A4D2 /* MilestoneComponents.swift in Sources */,
+				C6EC85F92BCCD88D00C9A4D2 /* ProjectDetail.swift in Sources */,
 				C6EC85E62BC8C1FA00C9A4D2 /* ProjectModel.swift in Sources */,
 				C6EC85F32BC8DA6500C9A4D2 /* TodoAppend.swift in Sources */,
 				C6EC85C92BC76CA700C9A4D2 /* MileToDoApp.swift in Sources */,
@@ -353,12 +361,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MileToDo/Preview Content\"";
 				DEVELOPMENT_TEAM = ZADA25JZ4A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -368,9 +378,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = mycompany.MileToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -382,12 +393,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MileToDo/Preview Content\"";
 				DEVELOPMENT_TEAM = ZADA25JZ4A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -397,9 +410,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = mycompany.MileToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
