@@ -24,7 +24,7 @@ struct Home: View {
             VStack(spacing: 0, content: {
                 WeekSlider()
                 
-                TodoLisView()
+                TodoListView()
                 
             })
             .onAppear(perform: {
@@ -128,6 +128,7 @@ extension Home {
                 .onTapGesture {
                     withAnimation(.snappy) {
                         currentDate = day.date
+                        print(currentDate)
                     }
                 }
             }
@@ -186,17 +187,26 @@ extension Home {
 /// TodoList View
 extension Home {
     @ViewBuilder
-    func TodoLisView() -> some View {
+    func TodoListView() -> some View {
         List{
             ForEach(projectList, id: \.id) { project in
                 ProjectTitle(projectData: project)
-                ForEach(project.todoLists, id: \.id) { todo in
-                    if !todo.isKilled && !todo.isFinished {
-                        ProjectTodo(todoData: todo)
-                    }
-                }
+                ProjectTodoListView(project)
             }
         }
         .listStyle(.plain)
+    }
+    
+    @ViewBuilder
+    func ProjectTodoListView(_ project: ProjectModel) -> some View {
+        ForEach(project.todoLists, id: \.id) { todo in
+            if !todo.isKilled {
+                if !todo.isFinished {
+                    ProjectTodo(todoData: todo)
+                } else if todo.finishedDate?.format("YYYYMMdd") == currentDate.format("YYYYMMdd") {
+                    ProjectTodo(todoData: todo)
+                }
+            }
+        }
     }
 }

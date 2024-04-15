@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectTitle: View {
-    @State var projectData: ProjectModel = ProjectModel(projectName: "Apple Developer Acadmey", 
+    @Bindable var projectData: ProjectModel = ProjectModel(projectName: "Apple Developer Acadmey", 
                                                         projectColor: "007AFF",
                                                         createdAt: Date(),
                                                         currentEndDate: Date(), 

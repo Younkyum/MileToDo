@@ -12,6 +12,7 @@ import SwiftUI
 class TodoModel {
     @Attribute(.unique) var id: UUID = UUID()
     var todoName: String
+    var finishedDate: Date?
     var isFinished: Bool = false
     var isKilled: Bool = false
     var deadLineDate: Date
