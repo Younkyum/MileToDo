@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ProjectDetail: View {
-    @Query var projectList: [ProjectModel]
+    @Query(sort: \ProjectModel.orderIndex) var projectList: [ProjectModel]
     @Binding var isProjectDetailSheetAppear: Bool
     
     @Environment(\.modelContext) var context
@@ -49,8 +49,15 @@ struct ProjectDetail: View {
                         try? context.save()
                     }
                 }
-                .onMove { from, to in
-                    //projectList.move(fromOffsets: from, toOffset: to)
+                .onMove { source, destination in
+                    var tempList = projectList
+                    tempList.move(fromOffsets: source, toOffset: destination)
+                    
+                    for (i, tempProject) in tempList.enumerated() {
+                        if let project = projectList.filter( {$0.id == tempProject.id} ).first {
+                            project.orderIndex = i
+                        }
+                    }
                 }
             }
             .listStyle(.insetGrouped)
@@ -58,14 +65,14 @@ struct ProjectDetail: View {
             .navigationTitle("등록된 프로젝트 목록")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("취소") {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("완료") {
                         isProjectDetailSheetAppear = false
                     }
                 }
                 
                 
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .topBarLeading) {
                     EditButton()
                 }
                 

@@ -10,6 +10,7 @@ import SwiftData
 
 struct ProjectAppend: View {
     @Environment(\.modelContext) var context
+    @Query var projectList: [ProjectModel]
     
     
     @State var projectNameText = ""
@@ -106,6 +107,7 @@ extension ProjectAppend {
         let newProject = ProjectModel(projectName: projectNameText,
                                       projectColor: projectMainColorRawList[projectMainColorList.firstIndex(of: projectMainColor)!],
                                       dateLists: dateLists,
+                                      orderIndex: projectList.count,
                                       todoLists: [])
         context.insert(newProject)
         

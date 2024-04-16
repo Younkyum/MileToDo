@@ -14,14 +14,16 @@ class ProjectModel {
     var projectName: String
     var projectColor: String
     var isSelected: Bool = true
+    var orderIndex: Int
     var dateLists: [String] = []
     
     @Relationship(deleteRule: .cascade) var todoLists: [TodoModel]
     
-    init(projectName: String, projectColor: String, dateLists: [String], todoLists: [TodoModel]) {
+    init(projectName: String, projectColor: String, dateLists: [String], orderIndex: Int, todoLists: [TodoModel]) {
         self.projectName = projectName
         self.projectColor = projectColor
         self.dateLists = dateLists
         self.todoLists = todoLists
+        self.orderIndex = orderIndex
     }
 }

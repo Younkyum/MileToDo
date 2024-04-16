@@ -20,7 +20,7 @@ struct Home: View {
     
     @Query(filter: #Predicate<ProjectModel> { project in
         project.isSelected == true
-    })
+    }, sort: \ProjectModel.orderIndex)
     var projectList: [ProjectModel]
     
     var body: some View {
@@ -251,9 +251,11 @@ extension Home {
         .scrollIndicators(.never)
     }
     
+
+    
     @ViewBuilder
     func ProjectTodoListView(_ project: ProjectModel) -> some View {
-        ForEach(project.todoLists, id: \.id) { todo in
+        ForEach(project.todoLists.sorted(by: ascendingTodo(_:_:)), id: \.id) { todo in
             if !todo.isKilled {
                 if !todo.isFinished {
                     ProjectTodo(todoData: todo)
@@ -262,6 +264,10 @@ extension Home {
                 }
             }
         }
+    }
+    
+    func ascendingTodo(_ lhs: TodoModel, _ rhs: TodoModel) -> Bool {
+        return lhs.deadLineDate < rhs.deadLineDate
     }
 }
 
