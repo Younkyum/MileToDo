@@ -49,6 +49,9 @@ struct ProjectDetail: View {
                         try? context.save()
                     }
                 }
+                .onMove { from, to in
+                    //projectList.move(fromOffsets: from, toOffset: to)
+                }
             }
             .listStyle(.insetGrouped)
             .toolbarTitleDisplayMode(.inline)

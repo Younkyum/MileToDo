@@ -89,7 +89,7 @@ extension Home {
                         .frame(width: 20, height: 20)
                         .padding(.horizontal)
                 }
-
+                
             }
             
             VStack(spacing: 0, content: {
@@ -226,14 +226,12 @@ extension Home {
                 Text("\(currentDate.format("YYYY년 M월 d일 (E)"))")
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundStyle(.textBlack)
-                    .hSpacing(.leading)
                 
                 Text("\(currentDate.lunarFormat())")
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundStyle(.gray)
                     .hSpacing(.leading)
                 
-                Spacer()
             }
             
             

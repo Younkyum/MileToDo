@@ -75,7 +75,13 @@ extension TodoAppend {
         context.insert(newTodo)
         selectedProject.todoLists.append(newTodo)
         
+        selectedProject.todoLists.sort(by: TodoAppend.asending)
+        
         let _: ()? = try? context.save()
+    }
+    
+    static func asending (lhs: TodoModel, rhs: TodoModel) -> Bool {
+        return lhs.deadLineDate < rhs.deadLineDate
     }
 }
 

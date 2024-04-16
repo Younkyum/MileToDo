@@ -16,6 +16,7 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    
     func lunarFormat() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "M월 d일"
@@ -24,9 +25,11 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    
     var isToday: Bool {
         return Calendar.current.isDateInToday(self)
     }
+    
     
     func fetchWeek(_ date: Date = .init()) -> [WeekDay] {
         let calendar = Calendar.current
@@ -47,6 +50,7 @@ extension Date {
         
         return week
     }
+    
     
     func createNextWeek() -> [WeekDay] {
         let calendar = Calendar.current
@@ -69,6 +73,7 @@ extension Date {
         
         return fetchWeek(previouseDate)
     }
+    
     
     struct WeekDay: Identifiable {
         var id: UUID = .init()
