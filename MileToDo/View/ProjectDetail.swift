@@ -17,45 +17,46 @@ struct ProjectDetail: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(projectList, id: \.id) { project in
-                    HStack {
-                        Button {
-                            project.isSelected.toggle()
-                        } label: {
-                            if !project.isSelected {
-                                Image(systemName: "circle")
-                                    .resizable()
-                                    .padding(0.5)
-                                    .foregroundStyle(Color(hex: project.projectColor))
-                                    .frame(width: 22, height: 22)
-                            } else {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .resizable()
-                                    .padding(0.5)
-                                    .foregroundStyle(Color(hex: project.projectColor))
-                                    .frame(width: 22, height: 22)
+                Section("보이기/숨기기 및 순서 변경") {
+                    ForEach(projectList, id: \.id) { project in
+                        HStack {
+                            Button {
+                                project.isSelected.toggle()
+                            } label: {
+                                if !project.isSelected {
+                                    Image(systemName: "circle")
+                                        .resizable()
+                                        .padding(0.5)
+                                        .foregroundStyle(Color(hex: project.projectColor))
+                                        .frame(width: 22, height: 22)
+                                } else {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .resizable()
+                                        .padding(0.5)
+                                        .foregroundStyle(Color(hex: project.projectColor))
+                                        .frame(width: 22, height: 22)
+                                }
                             }
+
+
+                            Text(project.projectName)
                         }
-                        .buttonStyle(BorderlessButtonStyle())
-
-
-                        Text(project.projectName)
                     }
-                }
-                .onDelete { indexSet in
-                    for index in indexSet {
-                        let project = projectList[index]
-                        context.delete(project)
-                        try? context.save()
+                    .onDelete { indexSet in
+                        for index in indexSet {
+                            let project = projectList[index]
+                            context.delete(project)
+                            try? context.save()
+                        }
                     }
-                }
-                .onMove { source, destination in
-                    var tempList = projectList
-                    tempList.move(fromOffsets: source, toOffset: destination)
-                    
-                    for (i, tempProject) in tempList.enumerated() {
-                        if let project = projectList.filter( {$0.id == tempProject.id} ).first {
-                            project.orderIndex = i
+                    .onMove { source, destination in
+                        var tempList = projectList
+                        tempList.move(fromOffsets: source, toOffset: destination)
+                        
+                        for (i, tempProject) in tempList.enumerated() {
+                            if let project = projectList.filter( {$0.id == tempProject.id} ).first {
+                                project.orderIndex = i
+                            }
                         }
                     }
                 }

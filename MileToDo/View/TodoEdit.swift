@@ -1,23 +1,27 @@
 //
-//  TodoAppend.swift
+//  TodoEdit.swift
 //  MileToDo
 //
-//  Created by YounkyumJin on 4/12/24.
+//  Created by YounkyumJin on 4/17/24.
 //
 
 import SwiftUI
 import SwiftData
 
-struct TodoAppend: View {
+struct TodoEdit: View {
     @Environment(\.modelContext) var context
     
-    @State var todoTitle: String = ""
-    @State var deadLineDate: Date = Date()
+    @State var todoTitle = ""
+    @State var deadLineDate = Date()
     @State var selectedProject: ProjectModel
     
-    @State var isChanged: Bool = false
+    @State var isChanged = false
     @State var isSaveAlertAppear = false
-    @Binding var isTodoAppendSheetAppear: Bool
+    
+    
+    @Bindable var targetTodo: TodoModel
+    @Binding var isTodoSheetAppear: Bool
+    
     
     @Query var projectLists: [ProjectModel]
     
@@ -28,7 +32,7 @@ struct TodoAppend: View {
             }
             .listStyle(.insetGrouped)
             .toolbarTitleDisplayMode(.inline)
-            .navigationTitle("새로운 투두 생성")
+            .navigationTitle("투두 편집")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
@@ -36,25 +40,30 @@ struct TodoAppend: View {
                         if isChanged {
                             isSaveAlertAppear = true
                         } else {
-                            isTodoAppendSheetAppear = false
+                            isTodoSheetAppear = false
                         }
                     }
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("저장") {
+                    Button("편집") {
                         saveTodo()
-                        isTodoAppendSheetAppear = false
+                        isTodoSheetAppear = false
                     }
                 }
             })
             .toolbar(.visible, for: .navigationBar)
             .confirmationDialog("", isPresented: $isSaveAlertAppear, titleVisibility: .hidden) {
                 Button("변경 사항 폐기", role: .destructive) {
-                    isTodoAppendSheetAppear = false
+                    isTodoSheetAppear = false
                 }
             }
         }
+        .onAppear(perform: {
+            todoTitle = targetTodo.todoName
+            deadLineDate = targetTodo.deadLineDate
+            selectedProject = targetTodo.project
+        })
     }
 }
 
@@ -64,18 +73,17 @@ struct TodoAppend: View {
 
 
 /// Save Todo
-extension TodoAppend {
+extension TodoEdit {
     func saveTodo() {
-        let newTodo = TodoModel(todoName: todoTitle,
-                                deadLineDate: deadLineDate,
-                                project: selectedProject)
+        if deadLineDate != targetTodo.deadLineDate {
+            targetTodo.project.dateLists.append(deadLineDate.format("YYYYMMdd"))
+            targetTodo.project.dateLists.remove(at: targetTodo.project.dateLists.firstIndex(of: targetTodo.deadLineDate.format("YYYYMMdd"))!)
+            targetTodo.project.dateLists.sort()
+        }
         
-        selectedProject.dateLists.append(deadLineDate.format("YYYYMMdd"))
-        selectedProject.dateLists.sort()
-        
-        context.insert(newTodo)
-        selectedProject.todoLists.append(newTodo)
-
+        targetTodo.todoName = todoTitle
+        targetTodo.deadLineDate = deadLineDate
+        targetTodo.project = selectedProject
         
         let _: ()? = try? context.save()
     }
@@ -83,7 +91,7 @@ extension TodoAppend {
 
 
 /// List Rows
-extension TodoAppend {
+extension TodoEdit {
     @ViewBuilder
     func TodoRow() -> some View {
         Section {

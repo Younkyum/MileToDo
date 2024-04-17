@@ -15,6 +15,7 @@ struct ProjectTitle: View {
         HStack {
             Text(projectData.projectName)
                 .font(.system(size: 14, weight: .regular))
+                .lineLimit(1)
                 .foregroundStyle(.white)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 6)
@@ -38,6 +39,7 @@ struct ProjectTitle: View {
         .sheet(isPresented: $isTodoAppendAppear, content: {
             TodoAppend(selectedProject: projectData, isTodoAppendSheetAppear: $isTodoAppendAppear)
         })
+
     }
 }
 

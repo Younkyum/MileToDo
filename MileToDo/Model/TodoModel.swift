@@ -16,12 +16,14 @@ class TodoModel {
     var isFinished: Bool = false
     var isKilled: Bool = false
     var deadLineDate: Date
+    var todoNote: String
     
     @Relationship var project: ProjectModel
     
-    init(todoName: String, deadLineDate: Date, project: ProjectModel) {
+    init(todoName: String, deadLineDate: Date, project: ProjectModel, todoNote: String = "") {
         self.todoName = todoName
         self.deadLineDate = deadLineDate
         self.project = project
+        self.todoNote = todoNote
     }
 }

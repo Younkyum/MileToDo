@@ -17,6 +17,7 @@ struct Home: View {
     @State private var createWeek: Bool = false
     @State var isProjectAppendSheetAppear: Bool = false
     @State var isProjectDetailSheetAppear: Bool = false
+    @State var isTodoDetailSheetAppear: Bool = false
     
     @Query(filter: #Predicate<ProjectModel> { project in
         project.isSelected == true
@@ -60,6 +61,9 @@ struct Home: View {
         .sheet(isPresented: $isProjectDetailSheetAppear, content: {
             ProjectDetail(isProjectDetailSheetAppear: $isProjectDetailSheetAppear)
         })
+        .sheet(isPresented: $isTodoDetailSheetAppear) {
+            TodoDetail(isTodoDetailSheetAppear: $isTodoDetailSheetAppear)
+        }
     }
 }
 
@@ -80,14 +84,24 @@ extension Home {
                     .padding([.leading])
                     .padding([.bottom], 8)
                 
-                Button {
-                    isProjectDetailSheetAppear = true
+                Button { // TodoDetailSheet
+                    isTodoDetailSheetAppear = true
                 } label: {
-                    Image(systemName: "calendar")
+                    Image(systemName: "magnifyingglass")
                         .resizable()
                         .foregroundStyle(.textBlack)
                         .frame(width: 20, height: 20)
-                        .padding(.horizontal)
+                        .padding(.trailing, 16)
+                }
+                
+                Button { // ProjectDetailSheet
+                    isProjectDetailSheetAppear = true
+                } label: {
+                    Image(systemName: "filemenu.and.selection")
+                        .resizable()
+                        .foregroundStyle(.textBlack)
+                        .frame(width: 20, height: 20)
+                        .padding(.trailing)
                 }
                 
             }
@@ -258,9 +272,9 @@ extension Home {
         ForEach(project.todoLists.sorted(by: ascendingTodo(_:_:)), id: \.id) { todo in
             if !todo.isKilled {
                 if !todo.isFinished {
-                    ProjectTodo(todoData: todo)
+                    ProjectTodo(todoData: todo, selectedDate: $currentDate)
                 } else if todo.finishedDate?.format("YYYYMMdd") == currentDate.format("YYYYMMdd") {
-                    ProjectTodo(todoData: todo)
+                    ProjectTodo(todoData: todo, selectedDate: $currentDate)
                 }
             }
         }

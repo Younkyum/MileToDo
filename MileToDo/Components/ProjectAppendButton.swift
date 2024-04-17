@@ -19,6 +19,7 @@ struct ProjectAppendButton: View {
                 Button(action: {
                     isProjectAppendSheetAppear = true
                 }, label: {
+                    
                     Text(buttonTitle)
                         .font(.system(size: 18, weight: .medium))
                         .foregroundStyle(.backgroundWhite)

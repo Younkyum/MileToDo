@@ -15,6 +15,8 @@ struct ProjectTodo: View {
     
     
     @State var isAlertAppear: Bool = false
+    @Binding var selectedDate: Date
+    @State var isEditSheetAppear: Bool = false
     
     var body: some View {
         HStack(alignment: .top) {
@@ -28,6 +30,9 @@ struct ProjectTodo: View {
             Spacer()
             TodoMeetBall()
         }
+        .sheet(isPresented: $isEditSheetAppear, content: {
+            TodoEdit(selectedProject: todoData.project, targetTodo: todoData, isTodoSheetAppear: $isEditSheetAppear)
+        })
     }
 }
 
@@ -73,12 +78,19 @@ extension ProjectTodo {
     @ViewBuilder
     func TodoDataText() -> some View {
         VStack(alignment: .leading){
-            Text(todoData.todoName)
-                .font(.system(size: 18, weight: .regular))
-                .foregroundStyle(.textBlack)
+            HStack {
+                if isSameDate(todoData.deadLineDate, selectedDate) {
+                    Image(systemName: "circle.badge.exclamationmark.fill")
+                        .foregroundStyle(Color(hex: todoData.project.projectColor))
+                }
+                
+                Text(todoData.todoName)
+                    .font(.system(size: 18, weight: .regular))
+                    .foregroundStyle(.textBlack)
+                
+            }
             
-            
-            Text("\(todoData.deadLineDate.format("~ YYYY.M.dd"))")
+            Text("\(todoData.deadLineDate.format("~ YYYY.M.d"))")
                 .font(.system(size: 14))
                 .foregroundStyle(.gray)
         }
@@ -93,7 +105,7 @@ extension ProjectTodo {
                 .foregroundStyle(.gray)
                 .strikethrough()
             
-            Text("\(todoData.deadLineDate.format("~ YYYY.M.dd")) | 완료됨: \(todoData.finishedDate?.format("YYYY.M.dd") ?? "2024.04.15")")
+            Text("\(todoData.deadLineDate.format("~ YYYY.M.d")) | 완료됨: \(todoData.finishedDate?.format("YYYY.M.d") ?? "2024.04.15")")
                 .font(.system(size: 14))
                 .foregroundStyle(.gray)
         }
@@ -121,6 +133,10 @@ extension ProjectTodo {
                 //context.delete(todoData)
                 todoData.project.dateLists.remove(at: todoData.project.dateLists.firstIndex(of: todoData.deadLineDate.format("YYYYMMdd"))!)
                 todoData.project.dateLists.sort()
+            }
+            
+            Button("Todo 편집하기", role: .none) {
+                isEditSheetAppear = true
             }
         }
     }
