@@ -46,7 +46,7 @@ struct TodoEdit: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("편집") {
+                    Button("저장") {
                         saveTodo()
                         isTodoSheetAppear = false
                     }

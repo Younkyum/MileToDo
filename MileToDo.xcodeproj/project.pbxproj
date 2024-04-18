@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C6B831D52BCEB8C200A0FB27 /* TodoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B831D42BCEB8C200A0FB27 /* TodoDetail.swift */; };
 		C6B831D72BCF58D800A0FB27 /* TodoEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B831D62BCF58D800A0FB27 /* TodoEdit.swift */; };
-		C6B831D92BCF5D5A00A0FB27 /* ProjectEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B831D82BCF5D5A00A0FB27 /* ProjectEdit.swift */; };
 		C6EC85C92BC76CA700C9A4D2 /* MileToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC85C82BC76CA700C9A4D2 /* MileToDoApp.swift */; };
 		C6EC85CB2BC76CA700C9A4D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC85CA2BC76CA700C9A4D2 /* ContentView.swift */; };
 		C6EC85CD2BC76CA800C9A4D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6EC85CC2BC76CA800C9A4D2 /* Assets.xcassets */; };
@@ -34,7 +33,6 @@
 /* Begin PBXFileReference section */
 		C6B831D42BCEB8C200A0FB27 /* TodoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetail.swift; sourceTree = "<group>"; };
 		C6B831D62BCF58D800A0FB27 /* TodoEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEdit.swift; sourceTree = "<group>"; };
-		C6B831D82BCF5D5A00A0FB27 /* ProjectEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEdit.swift; sourceTree = "<group>"; };
 		C6EC85C52BC76CA700C9A4D2 /* MileToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MileToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6EC85C82BC76CA700C9A4D2 /* MileToDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileToDoApp.swift; sourceTree = "<group>"; };
 		C6EC85CA2BC76CA700C9A4D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 				C6EC85F82BCCD88D00C9A4D2 /* ProjectDetail.swift */,
 				C6B831D42BCEB8C200A0FB27 /* TodoDetail.swift */,
 				C6B831D62BCF58D800A0FB27 /* TodoEdit.swift */,
-				C6B831D82BCF5D5A00A0FB27 /* ProjectEdit.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,7 +227,6 @@
 				C6B831D52BCEB8C200A0FB27 /* TodoDetail.swift in Sources */,
 				C6EC85E02BC771F800C9A4D2 /* Date+Extension.swift in Sources */,
 				C6EC85EB2BC8C8E800C9A4D2 /* ProjectAppendButton.swift in Sources */,
-				C6B831D92BCF5D5A00A0FB27 /* ProjectEdit.swift in Sources */,
 				C6EC85CB2BC76CA700C9A4D2 /* ContentView.swift in Sources */,
 				C6EC85D92BC76CCC00C9A4D2 /* Home.swift in Sources */,
 				C6EC85E42BC7891900C9A4D2 /* MilestoneComponents.swift in Sources */,
