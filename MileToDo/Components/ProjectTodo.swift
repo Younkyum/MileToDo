@@ -80,7 +80,7 @@ extension ProjectTodo {
         VStack(alignment: .leading){
             HStack {
                 if isSameDate(todoData.deadLineDate, selectedDate) {
-                    Image(systemName: "circle.badge.exclamationmark.fill")
+                    Image(systemName: "flag.fill")
                         .foregroundStyle(Color(hex: todoData.project.projectColor))
                 }
                 
