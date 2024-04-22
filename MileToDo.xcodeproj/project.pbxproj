@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C622933E2BD5F080000EF7A8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C622933D2BD5F080000EF7A8 /* Localizable.xcstrings */; };
 		C6B831D52BCEB8C200A0FB27 /* TodoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B831D42BCEB8C200A0FB27 /* TodoDetail.swift */; };
 		C6B831D72BCF58D800A0FB27 /* TodoEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B831D62BCF58D800A0FB27 /* TodoEdit.swift */; };
 		C6EC85C92BC76CA700C9A4D2 /* MileToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC85C82BC76CA700C9A4D2 /* MileToDoApp.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C622933D2BD5F080000EF7A8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C6B831D42BCEB8C200A0FB27 /* TodoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetail.swift; sourceTree = "<group>"; };
 		C6B831D62BCF58D800A0FB27 /* TodoEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEdit.swift; sourceTree = "<group>"; };
 		C6EC85C52BC76CA700C9A4D2 /* MileToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MileToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +96,7 @@
 				C6EC85CC2BC76CA800C9A4D2 /* Assets.xcassets */,
 				C6EC85FC2BCD1CF800C9A4D2 /* Color.xcassets */,
 				C6EC85CE2BC76CA800C9A4D2 /* Preview Content */,
+				C622933D2BD5F080000EF7A8 /* Localizable.xcstrings */,
 			);
 			path = MileToDo;
 			sourceTree = "<group>";
@@ -192,6 +195,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
+				vi,
 			);
 			mainGroup = C6EC85BC2BC76CA700C9A4D2;
 			productRefGroup = C6EC85C62BC76CA700C9A4D2 /* Products */;
@@ -210,6 +215,7 @@
 			files = (
 				C6EC85D02BC76CA800C9A4D2 /* Preview Assets.xcassets in Resources */,
 				C6EC85CD2BC76CA800C9A4D2 /* Assets.xcassets in Resources */,
+				C622933E2BD5F080000EF7A8 /* Localizable.xcstrings in Resources */,
 				C6EC85FD2BCD1CF800C9A4D2 /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

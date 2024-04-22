@@ -105,7 +105,7 @@ extension ProjectTodo {
                 .foregroundStyle(.gray)
                 .strikethrough()
             
-            Text("\(todoData.deadLineDate.format("~ YYYY.M.d")) | 완료됨: \(todoData.finishedDate?.format("YYYY.M.d") ?? "2024.04.15")")
+            Text("\(todoData.deadLineDate.format("~ YYYY.M.d")) | Done: \(todoData.finishedDate?.format("YYYY.M.d") ?? "2024.04.15")")
                 .font(.system(size: 14))
                 .foregroundStyle(.gray)
         }
@@ -128,14 +128,14 @@ extension ProjectTodo {
         .buttonStyle(BorderlessButtonStyle())
         .padding(6)
         .confirmationDialog("", isPresented: $isAlertAppear, titleVisibility: .hidden) {
-            Button("Todo 삭제하기", role: .destructive) {
+            Button("Delete Todo", role: .destructive) {
                 todoData.isKilled = true
                 //context.delete(todoData)
                 todoData.project.dateLists.remove(at: todoData.project.dateLists.firstIndex(of: todoData.deadLineDate.format("YYYYMMdd"))!)
                 todoData.project.dateLists.sort()
             }
             
-            Button("Todo 편집하기", role: .none) {
+            Button("Edit Todo", role: .none) {
                 isEditSheetAppear = true
             }
         }

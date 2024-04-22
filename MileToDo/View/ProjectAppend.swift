@@ -15,9 +15,9 @@ struct ProjectAppend: View {
     
     @State var projectNameText = ""
     @State var projectStartDate = Date()
-    @State var projectMainColorList = ["파란색", "빨간색", "노란색", "초록색"]
+    @State var projectMainColorList = ["Blue", "Red", "Yellow", "Green"]
     @State var projectMainColorRawList = ["007AFF", "FF2D55", "FF9500", "5FDE92"]
-    @State var projectMainColor = "파란색"
+    @State var projectMainColor = "Blue"
     
     
     @Binding var isProjectAppendSheetAppear: Bool
@@ -32,11 +32,11 @@ struct ProjectAppend: View {
             }
             .listStyle(.insetGrouped)
             .toolbarTitleDisplayMode(.inline)
-            .navigationTitle("새로운 프로젝트 생성")
+            .navigationTitle("Create New Project")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("취소") {
+                    Button("Cancel") {
                         if isChanged {
                             isSaveAlertAppear = true
                         } else {
@@ -46,7 +46,7 @@ struct ProjectAppend: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("저장") {
+                    Button("Save") {
                         saveProject()
                         isProjectAppendSheetAppear = false
                     }
@@ -54,7 +54,7 @@ struct ProjectAppend: View {
             })
             .toolbar(.visible, for: .navigationBar)
             .confirmationDialog("", isPresented: $isSaveAlertAppear, titleVisibility: .hidden) {
-                Button("변경 사항 폐기", role: .destructive) {
+                Button("Delete Changes", role: .destructive) {
                     isProjectAppendSheetAppear = false
                 }
             }
@@ -72,14 +72,14 @@ extension ProjectAppend {
     @ViewBuilder
     func ProjectRow() -> some View {
         Section {
-            TextField("프로젝트 이름 입력", text: $projectNameText)
+            TextField("Project Name", text: $projectNameText)
                 .onChange(of: projectNameText) { oldValue, newValue in
                     isChanged = true
                 }
         }
         
         Section {
-            DatePicker("시작 날짜 설정", selection: $projectStartDate, displayedComponents: .date)
+            DatePicker("Project Start Date", selection: $projectStartDate, displayedComponents: .date)
                 .onChange(of: projectStartDate) { oldValue, newValue in
                     isChanged = true
                 }
@@ -87,7 +87,7 @@ extension ProjectAppend {
         
         
         Section {
-            Picker("프로젝트 메인 색", selection: $projectMainColor) {
+            Picker("Project Main Color", selection: $projectMainColor) {
                 ForEach(projectMainColorList, id: \.self) { color in
                     Text(color)
                 }

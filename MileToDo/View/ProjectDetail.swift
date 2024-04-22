@@ -17,7 +17,7 @@ struct ProjectDetail: View {
     var body: some View {
         NavigationStack {
             List {
-                Section("보이기/숨기기 및 순서 변경") {
+                Section("Show/Hide and Change Order") {
                     ForEach(projectList, id: \.id) { project in
                         HStack {
                             Button {
@@ -63,11 +63,11 @@ struct ProjectDetail: View {
             }
             .listStyle(.insetGrouped)
             .toolbarTitleDisplayMode(.inline)
-            .navigationTitle("등록된 프로젝트 목록")
+            .navigationTitle("Projects")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("완료") {
+                    Button("Done") {
                         isProjectDetailSheetAppear = false
                     }
                 }

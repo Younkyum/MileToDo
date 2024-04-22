@@ -78,7 +78,7 @@ extension Home {
     func WeekSlider() -> some View {
         VStack {
             HStack(alignment: .center) {
-                Text(currentDate.format("M월"))
+                Text(currentDate.format("M"))
                     .font(.system(size: 34, weight: .bold))
                     .hSpacing(.leading)
                     .padding([.leading])
@@ -237,7 +237,7 @@ extension Home {
         List{
             
             HStack {
-                Text("\(currentDate.format("YYYY년 M월 d일 (E)"))")
+                Text("\(currentDate.format("YYYY.M.d (E)"))")
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundStyle(.textBlack)
                 

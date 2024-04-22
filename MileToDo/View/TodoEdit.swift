@@ -32,11 +32,11 @@ struct TodoEdit: View {
             }
             .listStyle(.insetGrouped)
             .toolbarTitleDisplayMode(.inline)
-            .navigationTitle("투두 편집")
+            .navigationTitle("Edit Todo")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("취소") {
+                    Button("Cancel") {
                         if isChanged {
                             isSaveAlertAppear = true
                         } else {
@@ -46,7 +46,7 @@ struct TodoEdit: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("저장") {
+                    Button("Save") {
                         saveTodo()
                         isTodoSheetAppear = false
                     }
@@ -54,7 +54,7 @@ struct TodoEdit: View {
             })
             .toolbar(.visible, for: .navigationBar)
             .confirmationDialog("", isPresented: $isSaveAlertAppear, titleVisibility: .hidden) {
-                Button("변경 사항 폐기", role: .destructive) {
+                Button("Delete Changes", role: .destructive) {
                     isTodoSheetAppear = false
                 }
             }
@@ -95,14 +95,14 @@ extension TodoEdit {
     @ViewBuilder
     func TodoRow() -> some View {
         Section {
-            TextField("투두 입력", text: $todoTitle)
+            TextField("Todo Title", text: $todoTitle)
                 .onChange(of: todoTitle) { oldValue, newValue in
                     isChanged = true
                 }
         }
         
         Section {
-            DatePicker("데드라인 설정", selection: $deadLineDate, displayedComponents: .date)
+            DatePicker("Todo Deadline", selection: $deadLineDate, displayedComponents: .date)
                 .onChange(of: deadLineDate) { oldValue, newValue in
                     isChanged = true
                 }
@@ -110,7 +110,7 @@ extension TodoEdit {
         
         
         Section {
-            Picker("프로젝트", selection: $selectedProject) {
+            Picker("Project", selection: $selectedProject) {
                 ForEach(projectLists, id: \.self) { project in
                     Text(project.projectName)
                         .lineLimit(1)
