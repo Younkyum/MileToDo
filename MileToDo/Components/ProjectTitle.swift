@@ -10,6 +10,7 @@ import SwiftUI
 struct ProjectTitle: View {
     @Bindable var projectData: ProjectModel    
     @State var isTodoAppendAppear = false
+    @State var isProjectEditAppear = false
     
     var body: some View {
         HStack {
@@ -25,6 +26,17 @@ struct ProjectTitle: View {
             Spacer()
             
             Button(action: {
+                isProjectEditAppear = true
+            }, label: {
+                Image(systemName: "pencil")
+                    .foregroundStyle(.white)
+                    .padding(6)
+                    .background(Color(hex: projectData.projectColor))
+                    .clipShape(Circle())
+            })
+            .buttonStyle(BorderlessButtonStyle())
+            
+            Button(action: {
                 isTodoAppendAppear = true
             }, label: {
                 Image(systemName: "plus")
@@ -38,6 +50,9 @@ struct ProjectTitle: View {
         .listRowSeparator(.hidden)
         .sheet(isPresented: $isTodoAppendAppear, content: {
             TodoAppend(selectedProject: projectData, isTodoAppendSheetAppear: $isTodoAppendAppear)
+        })
+        .sheet(isPresented: $isProjectEditAppear, content: {
+            ProjectEdit(targetProject: projectData, isProjectEditAppear: $isProjectEditAppear)
         })
 
     }

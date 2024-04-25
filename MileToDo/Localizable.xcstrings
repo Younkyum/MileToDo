@@ -289,6 +289,28 @@
         }
       }
     },
+    "Edit Project" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프로젝트 편집하기"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chỉnh sửa dự án"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑项目"
+          }
+        }
+      }
+    },
     "Edit Todo" : {
       "extractionState" : "manual",
       "localizations" : {

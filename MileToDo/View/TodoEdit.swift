@@ -94,7 +94,7 @@ extension TodoEdit {
 extension TodoEdit {
     @ViewBuilder
     func TodoRow() -> some View {
-        Section {
+        Section("Todo Title") {
             TextField("Todo Title", text: $todoTitle)
                 .onChange(of: todoTitle) { oldValue, newValue in
                     isChanged = true

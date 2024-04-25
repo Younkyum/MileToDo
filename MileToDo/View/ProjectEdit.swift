@@ -1,29 +1,26 @@
 //
-//  ProjectAppend.swift
+//  ProjectEdit.swift
 //  MileToDo
 //
-//  Created by YounkyumJin on 4/12/24.
+//  Created by YounkyumJin on 4/23/24.
 //
 
 import SwiftUI
-import SwiftData
 
-struct ProjectAppend: View {
+struct ProjectEdit: View {
     @Environment(\.modelContext) var context
-    @Query var projectList: [ProjectModel]
     
-    
-    @State var projectNameText = ""
-    @State var projectStartDate = Date()
+    @Bindable var targetProject: ProjectModel
+    @State var targetProjectTitle: String = ""
+    @State var projectMainColor = "Blue"
     @State var projectMainColorList = ["Blue", "Red", "Yellow", "Green"]
     @State var projectMainColorRawList = ["007AFF", "FF2D55", "FF9500", "5FDE92"]
-    @State var projectMainColor = "Blue"
     
     
-    @Binding var isProjectAppendSheetAppear: Bool
-    @State var isChanged = false
+    @Binding var isProjectEditAppear: Bool
     @State var isSaveAlertAppear = false
-        
+    @State var isChanged = false
+    
     
     var body: some View {
         NavigationStack {
@@ -32,7 +29,7 @@ struct ProjectAppend: View {
             }
             .listStyle(.insetGrouped)
             .toolbarTitleDisplayMode(.inline)
-            .navigationTitle("Create New Project")
+            .navigationTitle("Edit Project")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
@@ -40,7 +37,7 @@ struct ProjectAppend: View {
                         if isChanged {
                             isSaveAlertAppear = true
                         } else {
-                            isProjectAppendSheetAppear = false
+                            isProjectEditAppear = false
                         }
                     }
                 }
@@ -48,17 +45,21 @@ struct ProjectAppend: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
                         saveProject()
-                        isProjectAppendSheetAppear = false
+                        isProjectEditAppear = false
                     }
                 }
             })
             .toolbar(.visible, for: .navigationBar)
             .confirmationDialog("", isPresented: $isSaveAlertAppear, titleVisibility: .hidden) {
                 Button("Delete Changes", role: .destructive) {
-                    isProjectAppendSheetAppear = false
+                    isProjectEditAppear = false
                 }
             }
         }
+        .onAppear(perform: {
+            projectMainColor = projectMainColorList[projectMainColorRawList.firstIndex(of: targetProject.projectColor)!]
+            targetProjectTitle = targetProject.projectName
+        })
     }
 }
 
@@ -68,23 +69,15 @@ struct ProjectAppend: View {
 
 
 /// List Rows
-extension ProjectAppend {
+extension ProjectEdit {
     @ViewBuilder
     func ProjectRow() -> some View {
         Section("Project Name") {
-            TextField("Project Name", text: $projectNameText)
-                .onChange(of: projectNameText) { oldValue, newValue in
+            TextField("Project Name", text: $targetProjectTitle)
+                .onChange(of: targetProjectTitle) { oldValue, newValue in
                     isChanged = true
                 }
         }
-        
-        Section {
-            DatePicker("Project Start Date", selection: $projectStartDate, displayedComponents: .date)
-                .onChange(of: projectStartDate) { oldValue, newValue in
-                    isChanged = true
-                }
-        }
-        
         
         Section {
             Picker("Project Main Color", selection: $projectMainColor) {
@@ -99,17 +92,11 @@ extension ProjectAppend {
 
 
 /// Save to SwiftData
-extension ProjectAppend {
+extension ProjectEdit {
     private func saveProject() {
-        var dateLists: [String] = []
-        dateLists = [projectStartDate.format("YYYYMMdd")]
         
-        let newProject = ProjectModel(projectName: projectNameText,
-                                      projectColor: projectMainColorRawList[projectMainColorList.firstIndex(of: projectMainColor)!],
-                                      dateLists: dateLists,
-                                      orderIndex: projectList.count,
-                                      todoLists: [])
-        context.insert(newProject)
+        targetProject.projectName = targetProjectTitle
+        targetProject.projectColor = projectMainColorRawList[projectMainColorList.firstIndex(of: projectMainColor)!]
         
         let _: ()? = try? context.save()
     }
