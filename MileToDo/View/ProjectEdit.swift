@@ -13,8 +13,8 @@ struct ProjectEdit: View {
     @Bindable var targetProject: ProjectModel
     @State var targetProjectTitle: String = ""
     @State var projectMainColor = "Blue"
-    @State var projectMainColorList = ["Blue", "Red", "Yellow", "Green"]
-    @State var projectMainColorRawList = ["007AFF", "FF2D55", "FF9500", "5FDE92"]
+    @State var projectMainColorList = ["Blue", "Red", "Orange", "Green", "Purple", "Sky Blue", "Yellow"]
+    @State var projectMainColorRawList = ["007AFF", "FF2D55", "FF9500", "5FDE92", "AF52DE", "5AD2FF", "FFCD00"]
     
     
     @Binding var isProjectEditAppear: Bool

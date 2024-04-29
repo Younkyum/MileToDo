@@ -90,9 +90,17 @@ extension ProjectTodo {
                 
             }
             
-            Text("\(todoData.deadLineDate.format("~ YYYY.M.d"))")
-                .font(.system(size: 14))
-                .foregroundStyle(.gray)
+           
+            
+            if todoData.deadLineDate.format("YYYYMMdd") >= selectedDate.format("YYYYMMdd") {
+                Text("\(todoData.deadLineDate.format("~ YYYY.M.d"))")
+                    .font(.system(size: 14))
+                    .foregroundStyle(.gray)
+            } else {
+                Text("\(todoData.deadLineDate.format("~ YYYY.M.d")) Expired")
+                    .font(.system(size: 14))
+                    .foregroundStyle(.red)
+            }
         }
         .padding(.leading, 4)
     }
