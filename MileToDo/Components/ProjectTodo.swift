@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct ProjectTodo: View {
     @Environment(\.modelContext) var context
@@ -53,6 +54,7 @@ extension ProjectTodo {
                 todoData.isFinished = true
                 todoData.finishedDate = Date.init()
             }
+            WidgetCenter.shared.reloadAllTimelines()
         } label: {
             if !todoData.isFinished{
                 Image(systemName: "circle")

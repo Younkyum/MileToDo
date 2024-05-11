@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct TodoEdit: View {
     @Environment(\.modelContext) var context
@@ -86,6 +87,7 @@ extension TodoEdit {
         targetTodo.project = selectedProject
         
         let _: ()? = try? context.save()
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 

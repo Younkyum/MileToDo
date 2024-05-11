@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct TodoAppend: View {
     @Environment(\.modelContext) var context
@@ -78,6 +79,7 @@ extension TodoAppend {
 
         
         let _: ()? = try? context.save()
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 
