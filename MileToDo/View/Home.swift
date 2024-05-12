@@ -159,7 +159,6 @@ extension Home {
                 .onTapGesture {
                     withAnimation(.snappy) {
                         currentDate = day.date
-                        print(currentDate)
                     }
                 }
             }
@@ -172,7 +171,6 @@ extension Home {
                     .preference(key: OffsetKey.self, value: minX)
                     .onPreferenceChange(OffsetKey.self) { value in
                         if value.rounded() == 0 && createWeek {
-                            print("Generate")
                             paginateWeek()
                             createWeek = false
                         }
