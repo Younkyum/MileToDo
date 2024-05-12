@@ -23,7 +23,6 @@ struct ProjectTitle: View {
                 .background(Color(hex: projectData.projectColor))
                 .clipShape(Capsule())
             
-            Spacer()
             
             Button(action: {
                 isProjectEditAppear = true
@@ -35,6 +34,8 @@ struct ProjectTitle: View {
                     .clipShape(Circle())
             })
             .buttonStyle(BorderlessButtonStyle())
+            
+            Spacer()
             
             Button(action: {
                 isTodoAppendAppear = true

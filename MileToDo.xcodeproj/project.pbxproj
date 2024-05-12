@@ -7,17 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C6128E892BDF689E0044A854 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6128E552BDF64070044A854 /* WidgetKit.framework */; };
-		C6128E8A2BDF689E0044A854 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6128E572BDF64070044A854 /* SwiftUI.framework */; };
-		C6128E8D2BDF689E0044A854 /* MileTodoWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6128E8C2BDF689E0044A854 /* MileTodoWidgetBundle.swift */; };
-		C6128E8F2BDF689E0044A854 /* MileTodoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6128E8E2BDF689E0044A854 /* MileTodoWidget.swift */; };
-		C6128E912BDF689F0044A854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6128E902BDF689F0044A854 /* Assets.xcassets */; };
-		C6128E952BDF689F0044A854 /* MileTodoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C6128E882BDF689E0044A854 /* MileTodoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C6128E9C2BDF756E0044A854 /* SharedModelContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6128E9B2BDF756E0044A854 /* SharedModelContext.swift */; };
-		C6128EA52BDF89370044A854 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6128E9E2BDF78840044A854 /* Widget.swift */; };
-		C6128EA62BDF893D0044A854 /* SharedModelContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6128E9B2BDF756E0044A854 /* SharedModelContext.swift */; };
-		C6128EA72BDF89830044A854 /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC85E52BC8C1FA00C9A4D2 /* ProjectModel.swift */; };
-		C6128EA82BDF89860044A854 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC85E72BC8C28800C9A4D2 /* TodoModel.swift */; };
 		C622933E2BD5F080000EF7A8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C622933D2BD5F080000EF7A8 /* Localizable.xcstrings */; };
 		C62293402BD74746000EF7A8 /* ProjectEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622933F2BD74746000EF7A8 /* ProjectEdit.swift */; };
 		C6B831D52BCEB8C200A0FB27 /* TodoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B831D42BCEB8C200A0FB27 /* TodoDetail.swift */; };
@@ -43,16 +32,6 @@
 		C6EC85FD2BCD1CF800C9A4D2 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6EC85FC2BCD1CF800C9A4D2 /* Color.xcassets */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		C6128E932BDF689F0044A854 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C6EC85BD2BC76CA700C9A4D2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C6128E872BDF689E0044A854;
-			remoteInfo = MileTodoWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		C6128E6B2BDF64080044A854 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -60,7 +39,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C6128E952BDF689F0044A854 /* MileTodoWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,17 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C6128E4E2BDF5B650044A854 /* MileToDo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MileToDo.entitlements; sourceTree = "<group>"; };
 		C6128E552BDF64070044A854 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C6128E572BDF64070044A854 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		C6128E6C2BDF64ED0044A854 /* MileToDoDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MileToDoDebug.entitlements; sourceTree = "<group>"; };
-		C6128E882BDF689E0044A854 /* MileTodoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MileTodoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6128E8C2BDF689E0044A854 /* MileTodoWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileTodoWidgetBundle.swift; sourceTree = "<group>"; };
-		C6128E8E2BDF689E0044A854 /* MileTodoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileTodoWidget.swift; sourceTree = "<group>"; };
-		C6128E902BDF689F0044A854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C6128E922BDF689F0044A854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C6128E9B2BDF756E0044A854 /* SharedModelContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModelContext.swift; sourceTree = "<group>"; };
-		C6128E9E2BDF78840044A854 /* Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget.swift; sourceTree = "<group>"; };
 		C622933D2BD5F080000EF7A8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C622933F2BD74746000EF7A8 /* ProjectEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEdit.swift; sourceTree = "<group>"; };
 		C6B831D42BCEB8C200A0FB27 /* TodoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetail.swift; sourceTree = "<group>"; };
@@ -106,15 +75,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C6128E852BDF689E0044A854 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C6128E8A2BDF689E0044A854 /* SwiftUI.framework in Frameworks */,
-				C6128E892BDF689E0044A854 /* WidgetKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C6EC85C22BC76CA700C9A4D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -134,31 +94,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C6128E8B2BDF689E0044A854 /* MileTodoWidget */ = {
-			isa = PBXGroup;
-			children = (
-				C6128E8C2BDF689E0044A854 /* MileTodoWidgetBundle.swift */,
-				C6128E8E2BDF689E0044A854 /* MileTodoWidget.swift */,
-				C6128E902BDF689F0044A854 /* Assets.xcassets */,
-				C6128E922BDF689F0044A854 /* Info.plist */,
-			);
-			path = MileTodoWidget;
-			sourceTree = "<group>";
-		};
-		C6128E9D2BDF78720044A854 /* WidgetHelper */ = {
-			isa = PBXGroup;
-			children = (
-				C6128E9B2BDF756E0044A854 /* SharedModelContext.swift */,
-				C6128E9E2BDF78840044A854 /* Widget.swift */,
-			);
-			path = WidgetHelper;
-			sourceTree = "<group>";
-		};
 		C6EC85BC2BC76CA700C9A4D2 = {
 			isa = PBXGroup;
 			children = (
 				C6EC85C72BC76CA700C9A4D2 /* MileToDo */,
-				C6128E8B2BDF689E0044A854 /* MileTodoWidget */,
 				C6128E542BDF64070044A854 /* Frameworks */,
 				C6EC85C62BC76CA700C9A4D2 /* Products */,
 			);
@@ -168,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				C6EC85C52BC76CA700C9A4D2 /* MileToDo.app */,
-				C6128E882BDF689E0044A854 /* MileTodoWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -176,9 +114,6 @@
 		C6EC85C72BC76CA700C9A4D2 /* MileToDo */ = {
 			isa = PBXGroup;
 			children = (
-				C6128E9D2BDF78720044A854 /* WidgetHelper */,
-				C6128E6C2BDF64ED0044A854 /* MileToDoDebug.entitlements */,
-				C6128E4E2BDF5B650044A854 /* MileToDo.entitlements */,
 				C6EC85D62BC76CB600C9A4D2 /* Model */,
 				C6EC85E92BC8C8CA00C9A4D2 /* Components */,
 				C6EC85DE2BC7715300C9A4D2 /* Helpers */,
@@ -249,23 +184,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C6128E872BDF689E0044A854 /* MileTodoWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C6128E962BDF689F0044A854 /* Build configuration list for PBXNativeTarget "MileTodoWidgetExtension" */;
-			buildPhases = (
-				C6128E842BDF689E0044A854 /* Sources */,
-				C6128E852BDF689E0044A854 /* Frameworks */,
-				C6128E862BDF689E0044A854 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MileTodoWidgetExtension;
-			productName = MileTodoWidgetExtension;
-			productReference = C6128E882BDF689E0044A854 /* MileTodoWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		C6EC85C42BC76CA700C9A4D2 /* MileToDo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6EC85D32BC76CA800C9A4D2 /* Build configuration list for PBXNativeTarget "MileToDo" */;
@@ -278,7 +196,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C6128E942BDF689F0044A854 /* PBXTargetDependency */,
 			);
 			name = MileToDo;
 			productName = MileToDo;
@@ -295,9 +212,6 @@
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
-					C6128E872BDF689E0044A854 = {
-						CreatedOnToolsVersion = 15.3;
-					};
 					C6EC85C42BC76CA700C9A4D2 = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -319,20 +233,11 @@
 			projectRoot = "";
 			targets = (
 				C6EC85C42BC76CA700C9A4D2 /* MileToDo */,
-				C6128E872BDF689E0044A854 /* MileTodoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C6128E862BDF689E0044A854 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C6128E912BDF689F0044A854 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C6EC85C32BC76CA700C9A4D2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -347,19 +252,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C6128E842BDF689E0044A854 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C6128EA72BDF89830044A854 /* ProjectModel.swift in Sources */,
-				C6128EA62BDF893D0044A854 /* SharedModelContext.swift in Sources */,
-				C6128E8F2BDF689E0044A854 /* MileTodoWidget.swift in Sources */,
-				C6128EA82BDF89860044A854 /* TodoModel.swift in Sources */,
-				C6128E8D2BDF689E0044A854 /* MileTodoWidgetBundle.swift in Sources */,
-				C6128EA52BDF89370044A854 /* Widget.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C6EC85C12BC76CA700C9A4D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -380,7 +272,6 @@
 				C6EC85C92BC76CA700C9A4D2 /* MileToDoApp.swift in Sources */,
 				C6B831D72BCF58D800A0FB27 /* TodoEdit.swift in Sources */,
 				C6EC85DD2BC76F2600C9A4D2 /* View+Extensions.swift in Sources */,
-				C6128E9C2BDF756E0044A854 /* SharedModelContext.swift in Sources */,
 				C6EC85ED2BC8CAEC00C9A4D2 /* ProjectAppend.swift in Sources */,
 				C6EC85F52BC8DE8900C9A4D2 /* ProjectTodo.swift in Sources */,
 				C6EC85F12BC8D6EB00C9A4D2 /* Color+Extension.swift in Sources */,
@@ -389,75 +280,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		C6128E942BDF689F0044A854 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C6128E872BDF689E0044A854 /* MileTodoWidgetExtension */;
-			targetProxy = C6128E932BDF689F0044A854 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		C6128E972BDF689F0044A854 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = MileTodoWidgetExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZADA25JZ4A;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MileTodoWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MileTodoWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mycompany.MileToDo.MileTodoWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		C6128E982BDF689F0044A854 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = MileTodoWidgetExtensionRelease.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZADA25JZ4A;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MileTodoWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MileTodoWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mycompany.MileToDo.MileTodoWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		C6EC85D12BC76CA800C9A4D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -623,7 +446,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MileToDo/Preview Content\"";
-				DEVELOPMENT_TEAM = ZADA25JZ4A;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
@@ -650,15 +473,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C6128E962BDF689F0044A854 /* Build configuration list for PBXNativeTarget "MileTodoWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C6128E972BDF689F0044A854 /* Debug */,
-				C6128E982BDF689F0044A854 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		C6EC85C02BC76CA700C9A4D2 /* Build configuration list for PBXProject "MileToDo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
