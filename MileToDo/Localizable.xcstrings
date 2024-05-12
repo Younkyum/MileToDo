@@ -132,6 +132,12 @@
     "%@ Delayed" : {
       "extractionState" : "stale",
       "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 만료됨"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -249,6 +255,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "创建新的待办事项"
+          }
+        }
+      }
+    },
+    "Deadline" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "데드라인"
           }
         }
       }
@@ -501,6 +517,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存"
+          }
+        }
+      }
+    },
+    "Select Time" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시간 선택하기"
           }
         }
       }

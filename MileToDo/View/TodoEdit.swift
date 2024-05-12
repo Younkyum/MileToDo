@@ -14,6 +14,7 @@ struct TodoEdit: View {
     
     @State var todoTitle = ""
     @State var deadLineDate = Date()
+    @State var isTimeSelected: Bool = false
     @State var selectedProject: ProjectModel
     
     @State var isChanged = false
@@ -63,6 +64,7 @@ struct TodoEdit: View {
         .onAppear(perform: {
             todoTitle = targetTodo.todoName
             deadLineDate = targetTodo.deadLineDate
+            isTimeSelected = targetTodo.isTimeSelected
             selectedProject = targetTodo.project
         })
     }
@@ -84,6 +86,7 @@ extension TodoEdit {
         
         targetTodo.todoName = todoTitle
         targetTodo.deadLineDate = deadLineDate
+        targetTodo.isTimeSelected = isTimeSelected
         targetTodo.project = selectedProject
         
         let _: ()? = try? context.save()
@@ -103,9 +106,15 @@ extension TodoEdit {
                 }
         }
         
-        Section {
-            DatePicker("Todo Deadline", selection: $deadLineDate, displayedComponents: .date)
+        Section("Todo Deadline") {
+            DatePicker("Deadline", selection: $deadLineDate, displayedComponents: (isTimeSelected ? [.date, .hourAndMinute] : .date))
+                .datePickerStyle(.compact)
                 .onChange(of: deadLineDate) { oldValue, newValue in
+                    isChanged = true
+                }
+            
+            Toggle("Select Time", isOn: $isTimeSelected)
+                .onChange(of: isTimeSelected) { oldValue, newValue in
                     isChanged = true
                 }
         }

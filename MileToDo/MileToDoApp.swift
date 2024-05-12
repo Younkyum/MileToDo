@@ -13,10 +13,13 @@ struct MileToDoApp: App {
     
     var modelContainer: ModelContainer = {
         let schema = Schema([ProjectModel.self, TodoModel.self])
+        let migrationPlan = TodoMigrationPlan.self
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(for: schema,
+                                      migrationPlan: migrationPlan,
+                                      configurations: [modelConfiguration])
         } catch {
             fatalError("Could Not Create ModelContainer: \(error)")
         }

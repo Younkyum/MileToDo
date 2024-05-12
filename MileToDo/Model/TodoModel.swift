@@ -8,22 +8,64 @@
 import SwiftData
 import SwiftUI
 
-@Model
-class TodoModel {
-    @Attribute(.unique) var id: UUID = UUID()
-    var todoName: String
-    var finishedDate: Date?
-    var isFinished: Bool = false
-    var isKilled: Bool = false
-    var deadLineDate: Date
-    var todoNote: String
+typealias TodoModel = TodoSchemaV2.TodoModel
+
+/// TodoModel V1 -> 1.0.1부터 1.1.1까지 사용됨
+enum TodoSchemaV1: VersionedSchema {
+    static var versionIdentifier: Schema.Version = .init(1, 0, 0)
+    static var models: [any PersistentModel.Type] {
+        return [TodoModel.self]
+    }
     
-    @Relationship var project: ProjectModel
+    @Model
+    class TodoModel {
+        @Attribute(.unique) var id: UUID = UUID()
+        var todoName: String
+        var finishedDate: Date?
+        var isFinished: Bool = false
+        var isKilled: Bool = false
+        var deadLineDate: Date
+        var todoNote: String
+        
+        @Relationship var project: ProjectModel
+        
+        init(todoName: String, deadLineDate: Date, project: ProjectModel, todoNote: String = "") {
+            self.todoName = todoName
+            self.deadLineDate = deadLineDate
+            self.project = project
+            self.todoNote = todoNote
+        }
+    }
+}
+
+/// TodoModel V2 -> 1.2.0 부터 X.X.X까지 사용됨
+enum TodoSchemaV2: VersionedSchema {
+    static var versionIdentifier: Schema.Version = .init(1, 0, 1)
+    static var models: [any PersistentModel.Type] {
+        return [TodoModel.self]
+    }
     
-    init(todoName: String, deadLineDate: Date, project: ProjectModel, todoNote: String = "") {
-        self.todoName = todoName
-        self.deadLineDate = deadLineDate
-        self.project = project
-        self.todoNote = todoNote
+    @Model
+    public class TodoModel {
+        @Attribute(.unique) var id: UUID = UUID()
+        var todoName: String
+        var finishedDate: Date?
+        var isFinished: Bool = false
+        var isKilled: Bool = false
+        var deadLineDate: Date
+        var todoNote: String
+        
+        /// New in V2
+        var isTimeSelected: Bool = false
+        
+        @Relationship var project: ProjectModel
+        
+        init(todoName: String, deadLineDate: Date, project: ProjectModel, todoNote: String = "", isTimeSelected: Bool = false) {
+            self.todoName = todoName
+            self.deadLineDate = deadLineDate
+            self.project = project
+            self.todoNote = todoNote
+            self.isTimeSelected = isTimeSelected
+        }
     }
 }

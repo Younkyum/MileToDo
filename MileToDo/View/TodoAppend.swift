@@ -13,6 +13,7 @@ struct TodoAppend: View {
     @Environment(\.modelContext) var context
     
     @State var todoTitle: String = ""
+    @State var isTimeSelected: Bool = false
     @State var deadLineDate: Date = Date()
     @State var selectedProject: ProjectModel
     
@@ -69,14 +70,15 @@ extension TodoAppend {
     func saveTodo() {
         let newTodo = TodoModel(todoName: todoTitle,
                                 deadLineDate: deadLineDate,
-                                project: selectedProject)
+                                project: selectedProject, 
+                                isTimeSelected: isTimeSelected)
         
         selectedProject.dateLists.append(deadLineDate.format("YYYYMMdd"))
         selectedProject.dateLists.sort()
         
         context.insert(newTodo)
         selectedProject.todoLists.append(newTodo)
-
+        
         
         let _: ()? = try? context.save()
         WidgetCenter.shared.reloadAllTimelines()
@@ -95,9 +97,15 @@ extension TodoAppend {
                 }
         }
         
-        Section {
-            DatePicker("Todo DeadLine", selection: $deadLineDate, displayedComponents: .date)
+        Section("Todo Deadline") {
+            DatePicker("Deadline", selection: $deadLineDate, displayedComponents: (isTimeSelected ? [.date, .hourAndMinute] : .date))
+                .datePickerStyle(.compact)
                 .onChange(of: deadLineDate) { oldValue, newValue in
+                    isChanged = true
+                }
+            
+            Toggle("Select Time", isOn: $isTimeSelected)
+                .onChange(of: isTimeSelected) { oldValue, newValue in
                     isChanged = true
                 }
         }

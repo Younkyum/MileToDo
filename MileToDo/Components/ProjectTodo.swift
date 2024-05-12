@@ -93,16 +93,12 @@ extension ProjectTodo {
             }
             
            
-            
-            if todoData.deadLineDate.format("YYYYMMdd") >= selectedDate.format("YYYYMMdd") {
-                Text("\(todoData.deadLineDate.format("~ YYYY.M.d"))")
-                    .font(.system(size: 14))
-                    .foregroundStyle(.gray)
+            if todoData.isTimeSelected {
+                TodoDeadlineWithTime()
             } else {
-                Text("\(todoData.deadLineDate.format("~ YYYY.M.d")) Expired")
-                    .font(.system(size: 14))
-                    .foregroundStyle(.red)
+                TodoDeadline()
             }
+            
         }
         .padding(.leading, 4)
     }
@@ -120,6 +116,32 @@ extension ProjectTodo {
                 .foregroundStyle(.gray)
         }
         .padding(.leading, 4)
+    }
+    
+    @ViewBuilder
+    func TodoDeadlineWithTime() -> some View {
+        if todoData.deadLineDate.format("YYYYMMddHHmm") >= selectedDate.format("YYYYMMddHHmm") {
+            Text("\(todoData.deadLineDate.format("~ YYYY.M.d a h:mm"))")
+                .font(.system(size: 14))
+                .foregroundStyle(.gray)
+        } else {
+            Text("\(todoData.deadLineDate.format("~ YYYY.M.d a h:mm")) Expired")
+                .font(.system(size: 14))
+                .foregroundStyle(.red)
+        }
+    }
+    
+    @ViewBuilder
+    func TodoDeadline() -> some View {
+        if todoData.deadLineDate.format("YYYYMMdd") >= selectedDate.format("YYYYMMdd") {
+            Text("\(todoData.deadLineDate.format("~ YYYY.M.d"))")
+                .font(.system(size: 14))
+                .foregroundStyle(.gray)
+        } else {
+            Text("\(todoData.deadLineDate.format("~ YYYY.M.d")) Expired")
+                .font(.system(size: 14))
+                .foregroundStyle(.red)
+        }
     }
 }
 
