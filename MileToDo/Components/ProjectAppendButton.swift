@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectAppendButton: View {
-    @State var buttonTitle: String = "Add Projects"
+    @State var buttonTitle: String = "프로젝트 추가"
     @Binding var isProjectAppendSheetAppear: Bool
     
     var body: some View {
@@ -20,7 +20,7 @@ struct ProjectAppendButton: View {
                     isProjectAppendSheetAppear = true
                 }, label: {
                     
-                    Text("Add Projects")
+                    Text("프로젝트 추가")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundStyle(.backgroundWhite)
                         .padding(.vertical, 13.5)

@@ -23,6 +23,7 @@ struct Home: View {
         project.isSelected == true
     }, sort: \ProjectModel.orderIndex)
     var projectList: [ProjectModel]
+
     
     var body: some View {
         ZStack {
@@ -63,6 +64,17 @@ struct Home: View {
         })
         .sheet(isPresented: $isTodoDetailSheetAppear) {
             TodoDetail(isTodoDetailSheetAppear: $isTodoDetailSheetAppear)
+        }
+        .background(.backgroundWhite)
+        
+        .onAppear(){
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                if success {
+                    print("Permission approved!")
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }
@@ -205,22 +217,24 @@ extension Home {
     func MileStoneView(_ day: Date.WeekDay) -> some View {
         VStack {
             ForEach(projectList, id: \.id) { project in
-                let dayString = day.date.format("YYYYMMdd")
-                let firstProjectDayString = project.dateLists.first!
-                let lastProjectDayString = project.dateLists.last!
-                
-                if lastProjectDayString < dayString || firstProjectDayString > dayString {
-                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .none)
-                } else if firstProjectDayString == lastProjectDayString && dayString == firstProjectDayString  {
-                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .only)
-                } else if firstProjectDayString == dayString {
-                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .right)
-                } else if lastProjectDayString == dayString {
-                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .left)
-                } else if project.dateLists.contains(dayString) {
-                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .full)
-                } else {
-                    MileStoneComponent(color: Color(hex: project.projectColor), direction: .line)
+                if project.isSelected {
+                    let dayString = day.date.format("YYYYMMdd")
+                    let firstProjectDayString = project.dateLists.first!
+                    let lastProjectDayString = project.dateLists.last!
+                    
+                    if lastProjectDayString < dayString || firstProjectDayString > dayString {
+                        MileStoneComponent(color: Color(hex: project.projectColor), direction: .none)
+                    } else if firstProjectDayString == lastProjectDayString && dayString == firstProjectDayString  {
+                        MileStoneComponent(color: Color(hex: project.projectColor), direction: .only)
+                    } else if firstProjectDayString == dayString {
+                        MileStoneComponent(color: Color(hex: project.projectColor), direction: .right)
+                    } else if lastProjectDayString == dayString {
+                        MileStoneComponent(color: Color(hex: project.projectColor), direction: .left)
+                    } else if project.dateLists.contains(dayString) {
+                        MileStoneComponent(color: Color(hex: project.projectColor), direction: .full)
+                    } else {
+                        MileStoneComponent(color: Color(hex: project.projectColor), direction: .line)
+                    }
                 }
             }
         }
@@ -245,25 +259,32 @@ extension Home {
                     .hSpacing(.leading)
                 
             }
+            .listRowBackground(Color.clear)
             
             
             
             ForEach(projectList, id: \.id) { project in
                 ProjectTitle(projectData: project)
+                    .listRowBackground(Color.clear)
                 ProjectTodoListView(project)
+                    .listRowBackground(Color.clear)
+                
             }
+            
             
             Rectangle()
                 .fill(.backgroundWhite)
                 .listRowSeparator(.hidden)
                 .frame(height: 80)
+                .listRowBackground(Color.clear)
             
         }
         .listStyle(.plain)
+        .background(.backgroundWhite)
         .scrollIndicators(.never)
     }
     
-
+    
     
     @ViewBuilder
     func ProjectTodoListView(_ project: ProjectModel) -> some View {

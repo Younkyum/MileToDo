@@ -1,5 +1,5 @@
 {
-  "sourceLanguage" : "en",
+  "sourceLanguage" : "ko",
   "strings" : {
     "" : {
       "localizations" : {
@@ -47,12 +47,6 @@
     },
     "%@ | %@" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ | %2$@"
-          }
-        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -74,13 +68,8 @@
       }
     },
     "%@ | %@ | Done: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ | %2$@ | Done: %3$@"
-          }
-        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -101,14 +90,19 @@
         }
       }
     },
-    "%@ | Done: %@" : {
+    "%@ | %@ | 완료됨: %@" : {
       "localizations" : {
-        "en" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@ | Done: %2$@"
+            "value" : "%1$@ | %2$@ | 완료됨: %3$@"
           }
-        },
+        }
+      }
+    },
+    "%@ | Done: %@" : {
+      "extractionState" : "stale",
+      "localizations" : {
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129,9 +123,25 @@
         }
       }
     },
+    "%@ | 완료됨: %@" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ | 완료됨: %2$@"
+          }
+        }
+      }
+    },
     "%@ Delayed" : {
       "extractionState" : "stale",
       "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 만료됨"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -141,6 +151,7 @@
       }
     },
     "%@ Expired" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -162,6 +173,9 @@
         }
       }
     },
+    "%@ 만료됨" : {
+
+    },
     "Add Projects" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -181,6 +195,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "添加项目"
+          }
+        }
+      }
+    },
+    "At time of event" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "데드라인 당시"
           }
         }
       }
@@ -232,6 +257,7 @@
       }
     },
     "Create New Todo" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -249,6 +275,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "创建新的待办事项"
+          }
+        }
+      }
+    },
+    "Date" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날짜"
+          }
+        }
+      }
+    },
+    "Deadline" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "데드라인"
           }
         }
       }
@@ -323,6 +371,7 @@
       }
     },
     "Edit Project" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -363,6 +412,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "编辑待办事项"
+          }
+        }
+      }
+    },
+    "Nothing" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "없음"
           }
         }
       }
@@ -482,6 +542,17 @@
         }
       }
     },
+    "Reminder" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미리 알림"
+          }
+        }
+      }
+    },
     "Save" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -501,6 +572,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存"
+          }
+        }
+      }
+    },
+    "Select Time" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시간 선택하기"
           }
         }
       }
@@ -528,7 +610,41 @@
         }
       }
     },
+    "Show/Hide Milestone and Change Order" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보이기/숨기기 및 순서 변경"
+          }
+        }
+      }
+    },
+    "Time" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시간"
+          }
+        }
+      }
+    },
+    "Title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제목"
+          }
+        }
+      }
+    },
     "Todo Deadline" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -569,6 +685,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "待办事项截止日期"
+          }
+        }
+      }
+    },
+    "Todo Information" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "투두 정보"
           }
         }
       }
@@ -615,6 +742,86 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "去做"
+          }
+        }
+      }
+    },
+    "날짜" : {
+
+    },
+    "데드라인" : {
+
+    },
+    "미리 알림" : {
+
+    },
+    "변경사항 삭제" : {
+
+    },
+    "변경사항 삭제하기" : {
+
+    },
+    "보이기/숨기기 및 순서 변경" : {
+
+    },
+    "새 투두 생성" : {
+
+    },
+    "새 프로잭트 만들기" : {
+
+    },
+    "시간" : {
+
+    },
+    "완료" : {
+
+    },
+    "저장" : {
+
+    },
+    "제목" : {
+
+    },
+    "취소" : {
+
+    },
+    "투두" : {
+
+    },
+    "투두 삭제하기" : {
+
+    },
+    "투두 이름" : {
+
+    },
+    "투두 정보" : {
+
+    },
+    "투두 편집하기" : {
+
+    },
+    "프로젝트" : {
+
+    },
+    "프로젝트 색상" : {
+
+    },
+    "프로젝트 이름" : {
+
+    },
+    "프로젝트 추가" : {
+
+    },
+    "프로젝트 편집" : {
+
+    },
+    "헬바야" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정보 없음"
           }
         }
       }

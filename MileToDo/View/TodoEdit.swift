@@ -12,12 +12,15 @@ import WidgetKit
 struct TodoEdit: View {
     @Environment(\.modelContext) var context
     
-    @State var todoTitle = ""
-    @State var deadLineDate = Date()
+    @State var todoTitle: String = ""
+    @State var isTimeSelected: Bool = false
+    @State var deadLineDate: Date = Date()
+    @State var notificationPlan: NotificationPlan = NotificationPlan.none
     @State var selectedProject: ProjectModel
     
-    @State var isChanged = false
-    @State var isSaveAlertAppear = false
+    @State var isChanged: Bool = false
+    @State var isSaveAlertAppear: Bool = false
+    @State var isRowHidden = true
     
     
     @Bindable var targetTodo: TodoModel
@@ -29,15 +32,17 @@ struct TodoEdit: View {
     var body: some View {
         NavigationStack {
             List {
-                TodoRow()
+                TodoDefaultRow()
+                
+                DeadLineRow()
             }
             .listStyle(.insetGrouped)
             .toolbarTitleDisplayMode(.inline)
-            .navigationTitle("Edit Todo")
+            .navigationTitle("투두 편집하기")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") {
+                    Button("취소") {
                         if isChanged {
                             isSaveAlertAppear = true
                         } else {
@@ -47,7 +52,7 @@ struct TodoEdit: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Save") {
+                    Button("저장") {
                         saveTodo()
                         isTodoSheetAppear = false
                     }
@@ -55,7 +60,7 @@ struct TodoEdit: View {
             })
             .toolbar(.visible, for: .navigationBar)
             .confirmationDialog("", isPresented: $isSaveAlertAppear, titleVisibility: .hidden) {
-                Button("Delete Changes", role: .destructive) {
+                Button("변경사항 삭제하기", role: .destructive) {
                     isTodoSheetAppear = false
                 }
             }
@@ -63,7 +68,12 @@ struct TodoEdit: View {
         .onAppear(perform: {
             todoTitle = targetTodo.todoName
             deadLineDate = targetTodo.deadLineDate
+            isTimeSelected = targetTodo.isTimeSelected
             selectedProject = targetTodo.project
+            isTimeSelected = targetTodo.isTimeSelected
+            let tempNotificationPlan = NotificationPlan(rawValue: targetTodo.notificationPlan)
+            notificationPlan = tempNotificationPlan ?? NotificationPlan.none
+            
         })
     }
 }
@@ -84,7 +94,22 @@ extension TodoEdit {
         
         targetTodo.todoName = todoTitle
         targetTodo.deadLineDate = deadLineDate
+        targetTodo.isTimeSelected = isTimeSelected
         targetTodo.project = selectedProject
+        
+        if targetTodo.notificationPlan != notificationPlan.rawValue {
+            targetTodo.notificationPlan = notificationPlan.rawValue
+            let notificationManager = NotificationManager(targetModel: targetTodo)
+            notificationManager.removeNotification()
+            notificationManager.registerNotification()
+        }
+        
+        if notificationPlan == .none {
+            let notificationManager = NotificationManager(targetModel: targetTodo)
+            notificationManager.removeNotification()
+            targetTodo.notificationPlan = notificationPlan.rawValue
+        }
+        
         
         let _: ()? = try? context.save()
         WidgetCenter.shared.reloadAllTimelines()
@@ -92,30 +117,76 @@ extension TodoEdit {
 }
 
 
-/// List Rows
 extension TodoEdit {
     @ViewBuilder
-    func TodoRow() -> some View {
-        Section("Todo Title") {
-            TextField("Todo Title", text: $todoTitle)
+    func TodoDefaultRow() -> some View {
+        Section("투두 정보") {
+            TextField("제목", text: $todoTitle)
                 .onChange(of: todoTitle) { oldValue, newValue in
                     isChanged = true
                 }
-        }
-        
-        Section {
-            DatePicker("Todo Deadline", selection: $deadLineDate, displayedComponents: .date)
-                .onChange(of: deadLineDate) { oldValue, newValue in
-                    isChanged = true
-                }
-        }
-        
-        
-        Section {
-            Picker("Project", selection: $selectedProject) {
+            
+            Picker("프로젝트", selection: $selectedProject) {
                 ForEach(projectLists, id: \.self) { project in
                     Text(project.projectName)
                         .lineLimit(1)
+                }
+                
+            }
+        }
+    }
+}
+
+
+extension TodoEdit {
+    @ViewBuilder
+    func DeadLineRow() -> some View {
+        Section("데드라인") {
+            
+            DatePicker("날짜", selection: $deadLineDate, in: Date()..., displayedComponents: .date)
+                .datePickerStyle(.compact)
+                .onChange(of: deadLineDate) { oldValue, newValue in
+                    isChanged = true
+                }
+            
+            
+            HStack{
+                VStack(alignment: .leading) {
+                    Text("시간")
+                    if isTimeSelected {
+                        Text(deadLineDate.format("a h:mm"))
+                            .foregroundStyle(.blue)
+                            .font(.system(size: 13))
+                    }
+                }
+                
+                Spacer()
+                
+                Toggle(isOn: $isTimeSelected, label: {})
+                    .onChange(of: isTimeSelected) { oldValue, newValue in
+                        isRowHidden = false
+                    }
+                    
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                isRowHidden.toggle()
+            }
+            .animation(.bouncy, value: UUID())
+            
+            
+            if !isRowHidden && isTimeSelected  {
+                DatePicker(selection: $deadLineDate, displayedComponents: .hourAndMinute) {
+                    Text("")
+                }
+                .datePickerStyle(.wheel)
+            }
+            
+            if isTimeSelected {
+                Picker("미리 알림", selection: $notificationPlan) {
+                    ForEach(NotificationPlan.allCases, id: \.self) { notificationPlan in
+                        Text(notificationPlan.getSting())
+                    }
                 }
             }
         }

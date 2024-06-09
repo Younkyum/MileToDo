@@ -29,11 +29,11 @@ struct ProjectEdit: View {
             }
             .listStyle(.insetGrouped)
             .toolbarTitleDisplayMode(.inline)
-            .navigationTitle("Edit Project")
+            .navigationTitle("프로젝트 편집")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") {
+                    Button("취소") {
                         if isChanged {
                             isSaveAlertAppear = true
                         } else {
@@ -43,7 +43,7 @@ struct ProjectEdit: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Save") {
+                    Button("저장") {
                         saveProject()
                         isProjectEditAppear = false
                     }
@@ -51,7 +51,7 @@ struct ProjectEdit: View {
             })
             .toolbar(.visible, for: .navigationBar)
             .confirmationDialog("", isPresented: $isSaveAlertAppear, titleVisibility: .hidden) {
-                Button("Delete Changes", role: .destructive) {
+                Button("변경사항 삭제하기", role: .destructive) {
                     isProjectEditAppear = false
                 }
             }
@@ -72,15 +72,15 @@ struct ProjectEdit: View {
 extension ProjectEdit {
     @ViewBuilder
     func ProjectRow() -> some View {
-        Section("Project Name") {
-            TextField("Project Name", text: $targetProjectTitle)
+        Section("프로젝트 이름") {
+            TextField("프로젝트 이름", text: $targetProjectTitle)
                 .onChange(of: targetProjectTitle) { oldValue, newValue in
                     isChanged = true
                 }
         }
         
         Section {
-            Picker("Project Main Color", selection: $projectMainColor) {
+            Picker("프로젝트 색상", selection: $projectMainColor) {
                 ForEach(projectMainColorList, id: \.self) { color in
                     Text(color)
                 }

@@ -35,11 +35,11 @@ struct TodoDetail: View {
             .searchable(text: $todoSeachText, placement: .navigationBarDrawer(displayMode: .always))
             .listStyle(.plain)
             .toolbarTitleDisplayMode(.inline)
-            .navigationTitle("Todos")
+            .navigationTitle("투두")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") {
+                    Button("완료") {
                         isTodoDetailSheetAppear = false
                     }
                 }                
@@ -100,7 +100,7 @@ extension TodoDetail {
                 .foregroundStyle(.gray)
                 .strikethrough()
             
-            Text("\(todoData.project.projectName) | \(todoData.deadLineDate.format("~ YYYY.M.d")) | Done: \(todoData.finishedDate?.format("YYYY.M.d") ?? "2024.04.15")")
+            Text("\(todoData.project.projectName) | \(todoData.deadLineDate.format("~ YYYY.M.d")) | 완료됨: \(todoData.finishedDate?.format("YYYY.M.d") ?? "2024.04.15")")
                 .lineLimit(1)
                 .font(.system(size: 14))
                 .foregroundStyle(.gray)
