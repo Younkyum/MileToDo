@@ -7,7 +7,7 @@
 
 import SwiftData
 
-enum TodoMigrationPlan: SchemaMigrationPlan {
+enum MigrationPlan: SchemaMigrationPlan {
     /// Migration Target Schmas
     static var schemas: [any VersionedSchema.Type] {
         [TodoSchemaV1.self, TodoSchemaV2.self]
@@ -15,12 +15,12 @@ enum TodoMigrationPlan: SchemaMigrationPlan {
     
     /// Mirgation Stage Plans
     static var stages: [MigrationStage] {
-        [migrateV1toV2]
+        [todoMigrateV1toV2]
     }
     
     
     /// Migrate V1 to V2
-    static let migrateV1toV2 = MigrationStage.lightweight(
+    static let todoMigrateV1toV2 = MigrationStage.lightweight(
         fromVersion: TodoSchemaV1.self, toVersion: TodoSchemaV2.self
     )
 }

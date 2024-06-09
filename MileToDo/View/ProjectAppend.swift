@@ -32,11 +32,11 @@ struct ProjectAppend: View {
             }
             .listStyle(.insetGrouped)
             .toolbarTitleDisplayMode(.inline)
-            .navigationTitle("Create New Project")
+            .navigationTitle("새 프로잭트 만들기")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") {
+                    Button("취소") {
                         if isChanged {
                             isSaveAlertAppear = true
                         } else {
@@ -46,7 +46,7 @@ struct ProjectAppend: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Save") {
+                    Button("저장") {
                         saveProject()
                         isProjectAppendSheetAppear = false
                     }
@@ -54,7 +54,7 @@ struct ProjectAppend: View {
             })
             .toolbar(.visible, for: .navigationBar)
             .confirmationDialog("", isPresented: $isSaveAlertAppear, titleVisibility: .hidden) {
-                Button("Delete Changes", role: .destructive) {
+                Button("변경사항 삭제하기", role: .destructive) {
                     isProjectAppendSheetAppear = false
                 }
             }

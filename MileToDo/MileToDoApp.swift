@@ -13,7 +13,7 @@ struct MileToDoApp: App {
     
     var modelContainer: ModelContainer = {
         let schema = Schema([ProjectModel.self, TodoModel.self])
-        let migrationPlan = TodoMigrationPlan.self
+        let migrationPlan = MigrationPlan.self
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         
         do {

@@ -12,6 +12,9 @@ struct ProjectTitle: View {
     @State var isTodoAppendAppear = false
     @State var isProjectEditAppear = false
     
+    @State var isTodoAppendDataIsSavable = false
+    @State var isTodoAppendShowAlertSheet = false
+    
     var body: some View {
         HStack {
             Text(projectData.projectName)
@@ -49,7 +52,11 @@ struct ProjectTitle: View {
             .buttonStyle(BorderlessButtonStyle())
         }
         .listRowSeparator(.hidden)
-        .sheet(isPresented: $isTodoAppendAppear, content: {
+        .sheet(isPresented: $isTodoAppendAppear,onDismiss: {
+            if isTodoAppendDataIsSavable {
+                isTodoAppendShowAlertSheet = true
+            }
+        }, content: {
             TodoAppend(selectedProject: projectData, isTodoAppendSheetAppear: $isTodoAppendAppear)
         })
         .sheet(isPresented: $isProjectEditAppear, content: {

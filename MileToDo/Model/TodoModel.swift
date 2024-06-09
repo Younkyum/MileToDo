@@ -57,15 +57,19 @@ enum TodoSchemaV2: VersionedSchema {
         
         /// New in V2
         var isTimeSelected: Bool = false
+        var isNotificationSelected: Bool = false
+        var notificationPlan: String = NotificationPlan.none.rawValue
         
         @Relationship var project: ProjectModel
         
-        init(todoName: String, deadLineDate: Date, project: ProjectModel, todoNote: String = "", isTimeSelected: Bool = false) {
+        init(todoName: String, deadLineDate: Date, project: ProjectModel, todoNote: String = "", isTimeSelected: Bool = false, isNotificationSelected: Bool = false, notificationPlan: String = "none") {
             self.todoName = todoName
             self.deadLineDate = deadLineDate
             self.project = project
             self.todoNote = todoNote
             self.isTimeSelected = isTimeSelected
+            self.isNotificationSelected = isNotificationSelected
+            self.notificationPlan = notificationPlan
         }
     }
 }
